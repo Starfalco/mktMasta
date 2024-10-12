@@ -8,3 +8,5 @@ status - done in first commit
 status - wip
 
 indications - we can refer to function "Extract_Earnings" in cell [8] from file "Buy & Hold Port Screener - Multi tasking - 10.03.23.ipynb"
+
+Ali was here - 12/10/2024
