@@ -1,14 +1,27 @@
 # MKTmasta
-scrap stock market data
+## 1st phase
+scrap stock market data via yfinance framework
 
-# 1. code a class "Prices" from parent class "Extract" in file "data_downloader.py"
-status - done in first commit
+compute peg ratios and other metadata
+## 2nd phase
+scraping macro economics data from FRED
 
-# 2. code a class "Earnings" from parent class "Extract" in file "data_downloader.py"
-status - wip
+scraping data from ism (institute for supply management) reports (manufacturing and services)
+## 3rd phase
+scraping options/derivatives data
 
-indications - we can refer to function "Extract_Earnings" in cell [8] from file "Buy & Hold Port Screener - Multi tasking - 10.03.23.ipynb"
+compute pricer estimate based on Black-Scholes model (to help selecting stock target price and stop loss)
+## 4th phase - can start after 1st phase done
+generate an output for stock picking decisions (earnings calendar terms)
 
-Ali was here - 12/10/2024
+output front-end via a dataviz (power bi like or else, to be determinated)
 
-Nawar was here - 14/10/2024 - 1st version released on master branch
+genereate a short list selection based on those quantitatives (top 20 or other guideline)
+## 5th phase
+scheduling the entire pipeline on monthly or weekly basis (airflow or else)
+## 6th phase
+integrate a AI token output to sum up kpi's and additional main points from earnings call transcripts (as an input)
+## 7th phase - in long term
+in long term, storaging output and raw data for statistics purposes (regression model tests or else)
+
+in long term ++, train a AI model (LLM or else if they are more convinient models) based on those output to generate stock picking decisions (in comparison with analysts choices)
