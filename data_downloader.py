@@ -1,9 +1,11 @@
+from abc import ABC, abstractmethod
+
 import yfinance as yf
 import pandas as pd
-from abc import ABC, abstractmethod
-import requests
-from bs4 import BeautifulSoup
-from getuseragent import UserAgent
+# from deltalake.writer import write_deltalake
+# import requests
+# from bs4 import BeautifulSoup
+# from getuseragent import UserAgent
 import multitasking
 import signal
 import utils
@@ -15,28 +17,29 @@ multitasking.set_max_threads(multitasking.config['CPU_CORES'])
 signal.signal(signal.SIGINT, multitasking.killall)
 
 class Extract(ABC):
-    def __init__(self, tickers, output_path, output_type):
+    def __init__(self, tickers):
         self.tickers = tickers  # expect list of tickers
-        self.output_path = output_path
-        self.output_type = output_type
     
     @abstractmethod
     def get_data(self):
         pass
 
 class Prices(Extract):
-    def __init__(self, tickers, output_path, output_type, starting_date, ending_date):
-        super().__init__(tickers, output_path, output_type)
+    def __init__(self, tickers, starting_date, ending_date):
+        super().__init__(tickers)
         self.starting_date = starting_date
         self.ending_date = ending_date
+        self.output_path = 'extracts/price.parquet'
 
     def get_data(self):
-        yf.download(self.tickers, start = self.starting_date, end = self.ending_date, group_by = 'ticker').stack(level=0).to_csv(self.output_path + 'price' + self.output_type, encoding = 'utf-8', sep = ';')
+        # write_deltalake(self.output_path, yf.download(self.tickers, start = self.starting_date, end = self.ending_date, group_by = 'ticker').stack(level=0), mode='overwrite')
+        yf.download(self.tickers, start = self.starting_date, end = self.ending_date, group_by = 'ticker').stack(level=0).to_parquet(self.output_path)
 
-class Earnings(Extract):
-    def __init__(self, tickers, output_path, output_type):
-        super().__init__(tickers, output_path, output_type)
+class Earnings_Estimate(Extract):
+    def __init__(self, tickers):
+        super().__init__(tickers)
         self.results = []  # list to store all results
+        self.output_path = 'extracts/earnings_estimate.parquet'
 
     @multitasking.task
     def get_data_for_ticker(self, ticker, progress=True):
@@ -55,9 +58,49 @@ class Earnings(Extract):
         for ticker in self.tickers:
             self.get_data_for_ticker(ticker, progress=(progress))
         
-        # wait for all tasks to finish before writing the results to a CSV file
+        # wait for all tasks to finish before writing the results to a delta_lake file
         multitasking.wait_for_tasks()
 
-        # concatenate all dataframes and write to the CSV file
+        # concatenate all dataframes and write to the delta_lake file
         all_data = pd.concat(self.results)
-        all_data.to_csv(self.output_path + 'earnings_estimate' + self.output_type, encoding = 'utf-8', sep = ';')
+        # write_deltalake(self.output_path, all_data, mode='overwrite')
+        all_data.to_parquet(self.output_path)
+
+class Info(Extract):
+    def __init__(self, tickers):
+        super().__init__(tickers)
+        self.results = []  # list to store all results
+        self.output_path = 'extracts/info.parquet'
+
+    @multitasking.task
+    def get_data_for_ticker(self, ticker, progress=True):
+
+        try:
+            industry = yf.Ticker(ticker).get_info()['industry']
+        except:
+            industry = 'unknown'
+        try:
+            sector = yf.Ticker(ticker).get_info()['sector']
+        except:
+            sector = 'unknown'
+        df = pd.DataFrame.from_records({"Ticker": [ticker], "industry": [industry], "sector": [sector]})
+        self.results.append(df)
+
+        if progress:
+            shared._PROGRESS_BAR.animate()
+
+    def get_data(self, progress=True):
+
+        if progress:
+            shared._PROGRESS_BAR = utils.ProgressBar(len(self.tickers), 'completed')
+
+        for ticker in self.tickers:
+            self.get_data_for_ticker(ticker, progress=(progress))
+        
+        # wait for all tasks to finish before writing the results to a delta_lake file
+        multitasking.wait_for_tasks()
+
+        # concatenate all dataframes and write to the delta_lake file
+        all_data = pd.concat(self.results)
+        # write_deltalake(self.output_path, all_data, mode='overwrite')
+        all_data.to_parquet(self.output_path,index=False)
