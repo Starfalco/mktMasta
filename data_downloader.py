@@ -66,6 +66,37 @@ class Earnings_Estimate(Extract):
         # write_deltalake(self.output_path, all_data, mode='overwrite')
         all_data.to_parquet(self.output_path)
 
+class Earnings_History(Extract):
+    def __init__(self, tickers):
+        super().__init__(tickers)
+        self.results = []  # list to store all results
+        self.output_path = 'extracts/earnings_history.parquet'
+
+    @multitasking.task
+    def get_data_for_ticker(self, ticker, progress=True):
+        df = pd.DataFrame(yf.Ticker(ticker).get_earnings_history())
+        df['Ticker'] = ticker  # add a column for ticker name
+        self.results.append(df)
+
+        if progress:
+            shared._PROGRESS_BAR.animate()
+
+    def get_data(self, progress=True):
+
+        if progress:
+            shared._PROGRESS_BAR = utils.ProgressBar(len(self.tickers), 'completed')
+
+        for ticker in self.tickers:
+            self.get_data_for_ticker(ticker, progress=(progress))
+        
+        # wait for all tasks to finish before writing the results to a delta_lake file
+        multitasking.wait_for_tasks()
+
+        # concatenate all dataframes and write to the delta_lake file
+        all_data = pd.concat(self.results)
+        # write_deltalake(self.output_path, all_data, mode='overwrite')
+        all_data.to_parquet(self.output_path)
+
 class Info(Extract):
     def __init__(self, tickers):
         super().__init__(tickers)

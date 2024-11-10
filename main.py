@@ -10,5 +10,8 @@ list_ticker = list(df_ticker)
 # earnings_estimate_extract = Earnings_Estimate(list_ticker)
 # earnings_estimate_extract.get_data()
 
-info_extract = Info(list_ticker)
-info_extract.get_data()
+earnings_estimate_extract = Earnings_History(list_ticker)
+earnings_estimate_extract.get_data()
+
+# info_extract = Info(list_ticker)
+# info_extract.get_data()
