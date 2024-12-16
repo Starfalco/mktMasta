@@ -38,8 +38,8 @@ import requests as _requests
 from dateutil.relativedelta import relativedelta
 from pytz import UnknownTimeZoneError
 
-import const
-from const import _BASE_URL_
+import _const as _const
+from _const import _BASE_URL_
 
 user_agent_headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
@@ -644,14 +644,14 @@ def fix_Yahoo_returning_live_separate(quotes, interval, tz_exchange, repair=Fals
                         currency_divide = 100
                     # if ss < 75 or ss > 125:
                     if abs(ss/currency_divide-1) > 0.25:
-                        ratio = quotes.loc[idx1, const._PRICE_COLNAMES_] / quotes.loc[idx2, const._PRICE_COLNAMES_]
+                        ratio = quotes.loc[idx1, _const._PRICE_COLNAMES_] / quotes.loc[idx2, _const._PRICE_COLNAMES_]
                         if ((ratio/currency_divide-1).abs() < 0.05).all():
                             # newer prices are 100x
-                            for c in const._PRICE_COLNAMES_:
+                            for c in _const._PRICE_COLNAMES_:
                                 quotes.loc[idx2, c] *= 100
                         elif((ratio*currency_divide-1).abs() < 0.05).all():
                             # newer prices are 0.01x
-                            for c in const._PRICE_COLNAMES_:
+                            for c in _const._PRICE_COLNAMES_:
                                 quotes.loc[idx2, c] *= 0.01
 
                 # quotes.loc[idx2, 'Stock Splits'] = 2  # wtf? why doing this?
@@ -731,7 +731,7 @@ def safe_merge_dfs(df_main, df_sub, interval):
                 df_main['Dividends'] = 0.0
                 return df_main
         else:
-            empty_row_data = {**{c:[_np.nan] for c in const._PRICE_COLNAMES_}, 'Volume':[0]}
+            empty_row_data = {**{c:[_np.nan] for c in _const._PRICE_COLNAMES_}, 'Volume':[0]}
             if interval == '1d':
                 # For 1d, add all out-of-range event dates
                 for i in _np.where(f_outOfRange)[0]:
