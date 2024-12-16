@@ -20,8 +20,8 @@ genereate a short list selection based on those quantitatives (top 20 or other g
 ## 5th phase
 scheduling the entire pipeline on monthly or weekly basis (airflow or else)
 ## 6th phase
-integrate a AI token output to sum up kpi's and additional main points from earnings call transcripts (as an input)
+integrate a AI token output to sum up kpi's and additional main points from earnings call transcripts (as an input) with ollama apiRest
 ## 7th phase - in long term
 in long term, storaging output and raw data for statistics purposes (regression model tests or else)
 
-in long term ++, train a AI model (LLM or else if they are more convinient models) based on those output to generate stock picking decisions (in comparison with analysts choices)
+in long term ++, train a AI model or RAG (LLM or else if they are more convinient models) based on those output to generate stock picking decisions (in comparison with analysts choices)
