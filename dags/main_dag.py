@@ -41,7 +41,7 @@ with dag:
     t4 = PythonOperator(
         task_id='info_task',
         python_callable=info_task,
-        execution_timeout=timedelta(minutes=40),
+        execution_timeout=timedelta(minutes=12),
         dag=dag
     )
 
