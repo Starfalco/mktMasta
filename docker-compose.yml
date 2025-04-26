@@ -58,7 +58,11 @@ services:
 
   airflow-init:
     <<: *airflow-common
+<<<<<<< Updated upstream
     command: version
+=======
+    command: versionc
+>>>>>>> Stashed changes
     environment:
       <<: *airflow-common-env
       _AIRFLOW_DB_UPGRADE: 'true'
