@@ -32,7 +32,7 @@ def get_input():
 
 if __name__ == '__main__':
 
-    # prices_task()
+    prices_task()
     # earnings_estimate_task()
     # earnings_history_task()
-    info_task()
+    # info_task()
