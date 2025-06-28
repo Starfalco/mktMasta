@@ -1,0 +1,13 @@
+{
+    "path_inputs": "/inputs/sp500_list.csv",
+    "path_inputs_local_settings": "'inputs/sp500_list.csv'",
+    "extract_path": "/extracts/",
+    "extract_path_local_settings": "'extracts/'",
+    "end_date": "2024-06-01",
+    "start_date": "2024-06-30",
+    "request_rate": "2",
+    "prices_task_execution_in_minutes": "6",
+    "prices_earnings_estimate_in_minutes": "6",
+    "earnings_history_in_minutes": "6",
+    "info_task_execution_in_minutes": "12"
+}
