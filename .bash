@@ -1,4 +1,4 @@
-#airflow container
+# airflow container
 docker build . -f airflow.dockerfile --tag extending_airflow:latest
 docker compose up -d
 
