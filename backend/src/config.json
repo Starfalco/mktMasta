@@ -1,0 +1,69 @@
+{
+        "allowWorkerOnMaster": 0,
+        "masterNodes": [
+   {
+                 "hostname": "0",
+                 "user": "0",
+                 "password":"0",
+                 "privateKey": "0",       
+                 "deviceType": "0",
+                 "flannelIface": "0",
+                 "skipResourceCheck": 0,
+                 "skipWarning":0
+                },
+           {
+                 "hostname": "0",
+                 "user": "0",
+                 "password":"0",
+                 "privateKey": "0",       
+                 "deviceType": "0",
+                 "flannelIface": "0",
+                 "skipResourceCheck": 0,
+                 "skipWarning":0
+                }
+        ],
+        "workerNodes": [
+                  {
+                 "hostname": "0",
+                 "user": "0",
+                 "password":"0",
+                 "privateKey": "0",       
+                 "deviceType": "0",
+                 "flannelIface": "0",
+                 "skipResourceCheck": 0,
+                 "skipWarning":0
+                },
+                {
+                 "hostname": "0",
+                 "user": "0",
+                 "password":"0",
+                 "privateKey": "0",       
+                 "deviceType": "0",
+                 "flannelIface": "0",
+                 "skipResourceCheck": 0,
+                 "skipWarning":0
+                }
+        ],
+       
+  "licenseAgreement": {
+                  "eula": 0,
+                  "callHome": 0
+   },
+  "connection": {
+                  "externalHostname":"0",
+                  "serverKey": "0",
+                  "serverKeyPassword": "0",
+                  "serverCrt": "0",
+                  "rootCrt": "0"
+                 
+   },
+  "volumes": [
+           {
+                  "type":"0",
+                  "name":"itom-logging-vol",
+                  "host":"0",
+                  "path":"0"
+         }
+        ],
+   "skipImageCheck": 0
+}
