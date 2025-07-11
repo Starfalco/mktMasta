@@ -2,7 +2,7 @@ version: '3'
 x-airflow-common:
   &airflow-common
   build: .
-  image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:2}
+  image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
@@ -65,6 +65,17 @@ services:
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+
+  api:
+    build: .
+    working_dir: /code
+    image: ${FASTAPI_IMAGE_NAME:-mktmasta_fastapi:latest}
+    ports:
+     - "8000:8000"
+    volumes:
+     - ./backend/src:/code/src
+     - ./extracts:/code/extracts
+    command: ["fastapi", "run", "src/main.py"]
 
 volumes:
   postgres-db-volume:
