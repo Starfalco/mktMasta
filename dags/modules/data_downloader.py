@@ -15,7 +15,7 @@ from requests_ratelimiter import LimiterSession, RequestRate, Limiter, Duration
 
 import json
 
-config_path = config_path = "dags/modules/config.json"
+config_path = "dags/modules/config.json"
 
 with open(config_path) as stream:
     config = json.load(stream)
