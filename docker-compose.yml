@@ -75,6 +75,7 @@ services:
     volumes:
      - ./backend/src:/code/src
      - ./extracts:/code/extracts
+     - ./inputs:/code/inputs
     command: ["fastapi", "run", "src/main.py"]
 
 volumes:
