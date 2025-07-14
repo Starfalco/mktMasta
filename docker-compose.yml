@@ -17,7 +17,7 @@ x-airflow-common:
     - ./plugins:/opt/airflow/plugins
     - ./inputs:/inputs
     - ./extracts:/extracts
-  user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+  user: "${AIRFLOW_UID:-0}:${AIRFLOW_GID:-0}"
   depends_on:
     postgres:
       condition: service_healthy

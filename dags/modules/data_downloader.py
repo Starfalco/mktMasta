@@ -12,6 +12,7 @@ import signal
 import _utils as _utils
 import _shared as _shared
 from requests_ratelimiter import LimiterSession, RequestRate, Limiter, Duration
+from curl_cffi import requests
 
 import json
 
@@ -32,6 +33,7 @@ class Extract(ABC):
         self.request_rate = RequestRate(int(config["request_rate"]), Duration.SECOND)
         self.limiter = Limiter(self.request_rate)
         self.session = LimiterSession(limiter=self.limiter)
+        self.session = requests.Session(impersonate="chrome")
         self.session.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
         }
