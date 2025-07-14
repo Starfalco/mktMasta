@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .earnings_estimate import earnings_estimate_controller
-from .earnings_history import earnings_history_controller
-from .price import price_controller
-from .scope import scope_controller
+from .retrieve_earnings_estimate import retrieve_earnings_estimate_controller
+from .retrieve_earnings_history import retrieve_earnings_history_controller
+from .retrieve_price import retrieve_price_controller
+from .retrieve_scope import retrieve_scope_controller
+from .extracts_price import extracts_price_controller
 import json
 
 config_path = "src/config.json"
@@ -24,7 +25,8 @@ app.add_middleware(
     allow_headers=[],
 )
 
-app.include_router(earnings_estimate_controller.router)
-app.include_router(earnings_history_controller.router)
-app.include_router(price_controller.router)
-app.include_router(scope_controller.router)
+app.include_router(retrieve_earnings_estimate_controller.router)
+app.include_router(retrieve_earnings_history_controller.router)
+app.include_router(retrieve_price_controller.router)
+app.include_router(retrieve_scope_controller.router)
+app.include_router(extracts_price_controller.router)

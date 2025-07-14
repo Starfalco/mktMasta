@@ -3,9 +3,10 @@ import pandas as pd
 from json import loads
 
 
-class scope:
+class earnings_history:
+    path_earnings_history = "extracts/earnings_history.parquet"
 
-    def get_scope(symbol: str = None):
+    def get_earnings_history(symbol: str = None):
 
         # To get the directory of the script/file:
         current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -14,12 +15,15 @@ class scope:
         parent_dir = os.path.abspath(os.path.join(current_dir, "..", ".."))
         # parent_dir = os.path.abspath(os.path.join(current_dir, "..", "..", "..")) #local
 
-        data_path = os.path.join(parent_dir, "inputs", "sp500_list.csv")
+        data_path = os.path.join(parent_dir, "extracts", "earnings_history.parquet")
 
-        df = pd.read_csv(data_path, encoding="utf-8", sep=";")
+        df = pd.read_parquet(data_path, engine="pyarrow").reset_index()
+        df.rename(columns={"index": "date"}, inplace=True)
+
         if symbol != None:
-            df = df[df["Symbol"] == symbol.upper()]
-        result = df.to_json(orient="records")
-        parsed = loads(result)
+            df = df[df["Ticker"] == symbol.upper()]
 
-        return parsed
+        result = df.to_json(orient="records")
+        response = loads(result)
+
+        return response

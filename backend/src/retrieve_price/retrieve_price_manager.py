@@ -19,8 +19,10 @@ class price:
         df = pd.read_parquet(data_path, engine="pyarrow")
         df = pd.DataFrame(df.to_records())
         df = df[df["Ticker"] == symbol.upper()]
-        # df.rename(columns={'Adj Close' : 'AdjClose'},inplace=True)
-        result = df.to_json(orient="records")
-        parsed = loads(result)
 
-        return parsed
+        # df.rename(columns={'Adj Close' : 'AdjClose'},inplace=True)
+
+        result = df.to_json(orient="records")
+        response = loads(result)
+
+        return response
