@@ -1,4 +1,11 @@
 # MKTmasta
+
+## Run the project
+install docker (for windows and macos users, install docker desktop)
+follow the 3 commands on .bash file
+backend (fastapi) will listen in port 8080
+airflow web-client will listen in port 8000
+
 ## 1st phase
 scrap stock market data via yfinance framework
 
