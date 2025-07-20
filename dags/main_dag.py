@@ -8,6 +8,7 @@ sys.path.append("/opt/airflow/dags/modules/")
 from extracts_tasks import (
     prices_task,
     earnings_estimate_task,
+    earnings_dates_task,
     earnings_history_task,
     info_task,
 )
@@ -50,12 +51,18 @@ with dag:
         dag=dag,
     )
     t3 = PythonOperator(
+        task_id="earnings_dates_task",
+        python_callable=earnings_dates_task,
+        execution_timeout=timedelta(minutes=int(config["earnings_dates_in_minutes"])),
+        dag=dag,
+    )
+    t4 = PythonOperator(
         task_id="earnings_history_task",
         python_callable=earnings_history_task,
         execution_timeout=timedelta(minutes=int(config["earnings_history_in_minutes"])),
         dag=dag,
     )
-    t4 = PythonOperator(
+    t5 = PythonOperator(
         task_id="info_task",
         python_callable=info_task,
         execution_timeout=timedelta(
@@ -64,4 +71,4 @@ with dag:
         dag=dag,
     )
 
-    t1 >> t2 >> t3 >> t4
+    t1 >> t2 >> t3 >> t4 >> t5

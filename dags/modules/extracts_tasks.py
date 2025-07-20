@@ -25,6 +25,12 @@ def earnings_estimate_task():
     earnings_estimate_extract.get_data()
 
 
+def earnings_dates_task():
+
+    earnings_dates_extract = Earnings_Dates(get_input())
+    earnings_dates_extract.get_data()
+
+
 def earnings_history_task():
 
     earnings_history_extract = Earnings_History(get_input())
