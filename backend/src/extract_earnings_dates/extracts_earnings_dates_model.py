@@ -4,7 +4,6 @@ from datetime import date
 
 
 class extracts_earnings_dates_model(BaseModel):
-    # index: Optional[int] = Field(alias="index")
     divendendDate: Optional[date] = Field(alias="Dividend Date")
     exDivendendDate: Optional[date] = Field(alias="Ex-Dividend Date")
     earningsDate: Optional[date] = Field(alias="Earnings Date")

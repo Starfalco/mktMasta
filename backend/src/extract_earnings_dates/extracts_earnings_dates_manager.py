@@ -24,6 +24,6 @@ class extracts_earnings_dates:
 
         except Exception as e:
 
-            raise e
+            response = e
 
         return response

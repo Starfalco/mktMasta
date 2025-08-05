@@ -7,6 +7,7 @@ from .retrieve_price import retrieve_price_controller
 from .retrieve_scope import retrieve_scope_controller
 from .extracts_price import extracts_price_controller
 from .extract_earnings_dates import extracts_earnings_dates_controller
+from .compute_max_drawn_down import compute_max_drawn_down_controller
 import json
 
 config_path = "src/config.json"
@@ -32,3 +33,4 @@ app.include_router(retrieve_price_controller.router)
 app.include_router(retrieve_scope_controller.router)
 app.include_router(extracts_price_controller.router)
 app.include_router(extracts_earnings_dates_controller.router)
+app.include_router(compute_max_drawn_down_controller.router)
