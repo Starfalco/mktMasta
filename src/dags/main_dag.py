@@ -12,6 +12,9 @@ from extracts_tasks import (
     earnings_history_task,
     info_task,
 )
+from metadata_tasks import (
+    mdd_task
+)
 
 import json
 
@@ -39,6 +42,14 @@ with dag:
         python_callable=prices_task,
         execution_timeout=timedelta(
             minutes=int(config["prices_task_execution_in_minutes"])
+        ),
+        dag=dag,
+    )
+    t1_1 = PythonOperator(
+        task_id="mdd_task",
+        python_callable=mdd_task,
+        execution_timeout=timedelta(
+            minutes=int(config["mdd_task_execution_in_minutes"])
         ),
         dag=dag,
     )
@@ -71,4 +82,4 @@ with dag:
         dag=dag,
     )
 
-    t1 >> t2 >> t3 >> t4 >> t5
+    t1 >> [t1_1, t2] >> t3 >> t4 >> t5

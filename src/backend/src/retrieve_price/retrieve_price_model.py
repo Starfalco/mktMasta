@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 from datetime import date
 
 
-class price_model(BaseModel):
+class retrieve_price_model(BaseModel):
     Date: Optional[date] = None
     Ticker: Optional[str] = None
     Open: Optional[float] = None
