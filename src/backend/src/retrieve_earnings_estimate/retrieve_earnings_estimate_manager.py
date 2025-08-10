@@ -12,7 +12,7 @@ class earnings_estimate:
         current_dir = os.path.dirname(os.path.realpath(__file__))
 
         # To get one directory up from the current file
-        parent_dir = os.path.abspath(os.path.join(current_dir, "..", ".."))
+        parent_dir = os.path.abspath(os.path.join(current_dir, "..", "..", ".."))
         # parent_dir = os.path.abspath(os.path.join(current_dir, "..", "..", "..")) #local
 
         data_path = os.path.join(parent_dir, "extracts", "earnings_estimate.parquet")

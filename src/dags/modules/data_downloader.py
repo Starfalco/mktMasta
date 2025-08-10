@@ -14,9 +14,11 @@ import _shared as _shared
 from requests_ratelimiter import LimiterSession, RequestRate, Limiter, Duration
 from curl_cffi import requests
 
-import json
+import json, os
 
-config_path = "dags/modules/config.json"
+# To get the directory of the script/file:
+current_dir = os.path.dirname(os.path.realpath(__file__))
+config_path = os.path.join(current_dir, "config.json")
 
 with open(config_path) as stream:
     config = json.load(stream)
