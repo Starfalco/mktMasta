@@ -4,7 +4,8 @@
                 "http://localhost.***REMOVED***",
                 "https://localhost.***REMOVED***",
                 "http://localhost",
-                "http://localhost:8080"
+                "http://localhost:8080",
+                "http://localhost:4200"
         ],
         "allow_methods" :
         [
