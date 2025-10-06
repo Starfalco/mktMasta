@@ -12,7 +12,7 @@ from extracts_tasks import (
     earnings_history_task,
     info_task,
 )
-from metadata_tasks import mdd_task
+from metadata_tasks import mdd_task, volatility_task
 import json
 
 config_path = "dags/modules/config.json"
@@ -50,6 +50,14 @@ with dag:
         ),
         dag=dag,
     )
+    t1_2 = PythonOperator(
+        task_id="volatility_task",
+        python_callable=volatility_task,
+        execution_timeout=timedelta(
+            minutes=int(config["volatility_task_execution_in_minutes"])
+        ),
+        dag=dag,
+    )
     t2 = PythonOperator(
         task_id="earnings_estimate_task",
         python_callable=earnings_estimate_task,
@@ -79,4 +87,4 @@ with dag:
         dag=dag,
     )
 
-    t1 >> [t1_1, t2] >> t3 >> t4 >> t5
+    t1 >> [t1_1, t1_2, t2] >> t3 >> t4 >> t5
