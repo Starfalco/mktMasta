@@ -4,5 +4,7 @@
 __pycache__
 spark
 logs
+airflow/airflow.cfg
+airflow/webserver_config.py
 extracts
 Buy & Hold Port Screener - Multi tasking - 10.03.23.ipynb

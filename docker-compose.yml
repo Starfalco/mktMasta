@@ -12,11 +12,13 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: 10
   volumes:
-    - ./dags:/opt/airflow/dags
-    - ./logs:/opt/airflow/logs
-    - ./plugins:/opt/airflow/plugins
-    - ./inputs:/inputs
-    - ./extracts:/extracts
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/plugins:/opt/airflow/plugins
+    - ./utils:/opt/utils
+    - ./inputs:/opt/inputs
+    - ./extracts:/opt/extracts
+    - ./metadata:/opt/metadata
   user: "${AIRFLOW_UID:-0}:${AIRFLOW_GID:-0}"
   depends_on:
     postgres:
@@ -73,10 +75,11 @@ services:
     ports:
      - "8000:8000"
     volumes:
-     - ./backend/src:/code/src
+     - ./backend/src:/code/backend/src
+     - ./utils:/code/utils
      - ./extracts:/code/extracts
      - ./inputs:/code/inputs
-    command: ["fastapi", "run", "src/main.py"]
+    command: ["fastapi", "run", "backend/src/main.py"]
 
   ui:
     build: .

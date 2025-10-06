@@ -1,0 +1,17 @@
+{
+    "path_inputs": "/opt/inputs/sp500_list.csv",
+    "extract_path": "/opt/extracts/",
+    "metadata_path": "/opt/metadata/",
+    "path_inputs_local_settings": "'inputs/sp500_list.csv'",
+    "extract_path_local_settings": "'extracts/'",
+    "metadata_local_settings": "'metadata/'",
+    "end_date": "2025-09-30",
+    "start_date": "2025-09-01",
+    "request_rate": "2",
+    "prices_task_execution_in_minutes": "6",
+    "mdd_task_execution_in_minutes": "6",
+    "prices_earnings_estimate_in_minutes": "6",
+    "earnings_history_in_minutes": "6",
+    "earnings_dates_in_minutes": "6",
+    "info_task_execution_in_minutes": "12"
+}
