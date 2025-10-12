@@ -1,8 +1,10 @@
 FROM node:alpine
 
-WORKDIR /visual
+WORKDIR /frontend
 
-COPY . /visual
+COPY frontend/package*.json ./
+
+COPY frontend/ .
 
 RUN npm install -g npm
 
