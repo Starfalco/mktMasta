@@ -81,5 +81,13 @@ services:
      - ./inputs:/code/inputs
     command: ["fastapi", "run", "backend/src/main.py"]
 
+  ui:
+    build: .
+    working_dir: /frontend
+    image: ${ANGULAR_IMAGE_NAME:-mktmasta_angular:latest}
+    ports:
+     - "4200:4200"
+    command: ["ng", "serve", "--host", "0.0.0.0"]
+  
 volumes:
   postgres-db-volume:
