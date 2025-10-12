@@ -88,6 +88,6 @@ services:
     ports:
      - "4200:4200"
     command: ["ng", "serve", "--host", "0.0.0.0"]
-  
+
 volumes:
   postgres-db-volume:
