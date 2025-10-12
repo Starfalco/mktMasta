@@ -13,8 +13,7 @@ async def get(
 ) -> list[volatility_model]:
 
     volatility = compute_volatility(symbol, start_date, end_date)
-    response = volatility.get_volatility()
-    response = response.to_json(orient="records")
-    response = loads(response)
+
+    response = loads(volatility.get_volatility().to_json(orient="records"))
 
     return response
