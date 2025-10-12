@@ -10,8 +10,7 @@ router = APIRouter(prefix="/compute", tags=["compute"])
 async def get(symbol: str) -> list[peg_model]:
 
     peg = compute_peg(symbol)
-    response = peg.get_peg()
-    response = response.to_json(orient="records")
-    response = loads(response)
+
+    response = loads(peg.get_peg().to_json(orient="records"))
 
     return response
