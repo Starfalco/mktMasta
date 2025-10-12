@@ -1,22 +1,22 @@
 from abc import ABC, abstractmethod
+import json, os
 
 import yfinance as yf
 import pandas as pd
 
 # from deltalake.writer import write_deltalake
-# import requests
-# from bs4 import BeautifulSoup
-# from getuseragent import UserAgent
+
 import multitasking
 import signal
-import _utils as _utils
-import _shared as _shared
+import _utils
+import _shared
 from requests_ratelimiter import LimiterSession, RequestRate, Limiter, Duration
 from curl_cffi import requests
 
-import json
 
-config_path = "dags/modules/config.json"
+# To get the directory of the script/file:
+current_dir = os.path.dirname(os.path.realpath(__file__))
+config_path = os.path.join(current_dir, "config.json")
 
 with open(config_path) as stream:
     config = json.load(stream)

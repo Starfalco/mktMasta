@@ -10,7 +10,7 @@ from .extract_earnings_dates import extracts_earnings_dates_controller
 from .compute_max_drawn_down import compute_max_drawn_down_controller
 import json
 
-config_path = "src/config.json"
+config_path = "backend/src/config.json"
 
 with open(config_path) as stream:
     config = json.load(stream)
