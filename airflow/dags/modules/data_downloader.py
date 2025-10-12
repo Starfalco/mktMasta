@@ -8,8 +8,8 @@ import pandas as pd
 
 import multitasking
 import signal
-import _utils as _utils
-import _shared as _shared
+import _utils
+import _shared
 from requests_ratelimiter import LimiterSession, RequestRate, Limiter, Duration
 from curl_cffi import requests
 

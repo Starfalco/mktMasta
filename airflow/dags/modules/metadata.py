@@ -11,8 +11,8 @@ import sys
 # setting path
 sys.path.append("/opt/airflow/dags/modules/")
 
-import _utils as _utils
-import _shared as _shared
+import _utils
+import _shared
 
 # setting path
 sys.path.append("/opt/utils/")

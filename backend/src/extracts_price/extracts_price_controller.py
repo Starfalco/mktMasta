@@ -12,8 +12,8 @@ async def get(
     symbol: str, start_date: date = None, end_date: date = None
 ) -> list[extracts_price_model]:
 
-    response = extracts_price.get_price(symbol, start_date, end_date)
-    response = response.to_json(orient="records")
-    response = loads(response)
+    response = loads(
+        extracts_price.get_price(symbol, start_date, end_date).to_json(orient="records")
+    )
 
     return response

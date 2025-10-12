@@ -9,9 +9,7 @@ router = APIRouter(prefix="/retrieve", tags=["retrieve"])
 @router.get("/scope/{symbol}")
 async def get(symbol: str) -> list[scope_model]:
 
-    response = scope.get_scope(symbol)
-    response = response.to_json(orient="records")
-    response = loads(response)
+    response = loads(scope.get_scope(symbol).to_json(orient="records"))
 
     return response
 
@@ -19,8 +17,6 @@ async def get(symbol: str) -> list[scope_model]:
 @router.get("/scope")
 async def get() -> list[scope_model]:
 
-    response = scope.get_scope()
-    response = response.to_json(orient="records")
-    response = loads(response)
+    response = loads(scope.get_scope().to_json(orient="records"))
 
     return response
