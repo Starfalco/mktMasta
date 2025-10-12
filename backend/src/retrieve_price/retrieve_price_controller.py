@@ -9,8 +9,6 @@ router = APIRouter(prefix="/retrieve", tags=["retrieve"])
 @router.get("/retrieve_price/{symbol}")
 async def get(symbol: str) -> list[retrieve_price_model]:
 
-    response = retrive_price.get_price(symbol)
-    response = response.to_json(orient="records")
-    response = loads(response)
+    response = loads(retrive_price.get_price(symbol).to_json(orient="records"))
 
     return response

@@ -26,13 +26,6 @@ def mdd_task():
     mdd_transform.transform_data()
 
 
-def volatility_task():
-    volatility_transform = Volatility(
-        get_input(), starting_date=config["start_date"], ending_date=config["end_date"]
-    )
-    volatility_transform.transform_data()
-
-
 if __name__ == "__main__":
 
     mdd_task()
