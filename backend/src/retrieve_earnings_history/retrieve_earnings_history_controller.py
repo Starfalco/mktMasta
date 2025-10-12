@@ -9,9 +9,9 @@ router = APIRouter(prefix="/retrieve", tags=["retrieve"])
 @router.get("/earnings_history/{symbol}")
 async def get(symbol: str) -> list[earnings_history_model]:
 
-    response = earnings_history.get_earnings_history(symbol)
-    response = response.to_json(orient="records")
-    response = loads(response)
+    response = loads(
+        earnings_history.get_earnings_history(symbol).to_json(orient="records")
+    )
 
     return response
 
@@ -19,8 +19,6 @@ async def get(symbol: str) -> list[earnings_history_model]:
 @router.get("/earnings_history")
 async def get() -> list[earnings_history_model]:
 
-    response = earnings_history.get_earnings_history()
-    response = response.to_json(orient="records")
-    response = loads(response)
+    response = loads(earnings_history.get_earnings_history().to_json(orient="records"))
 
     return response
