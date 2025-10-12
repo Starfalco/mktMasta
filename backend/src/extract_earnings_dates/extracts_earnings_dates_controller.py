@@ -11,8 +11,6 @@ async def get(
     symbol: str
 ) -> list[extracts_earnings_dates_model]:
 
-    response = extracts_earnings_dates.get_extracts_earnings_dates(symbol)
-    response = response.to_json(orient="records")
-    response = loads(response)
+    response = loads(extracts_earnings_dates.get_extracts_earnings_dates(symbol).to_json(orient="records"))
 
     return response

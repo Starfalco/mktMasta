@@ -13,8 +13,7 @@ async def get(
 ) -> list[compute_max_drawn_down_model]:
 
     mdd = compute_max_drawn_down(symbol, start_date, end_date)
-    response = mdd.get_max_drawn_down()
-    response = response.to_json(orient="records")
-    response = loads(response)
+
+    response = loads(mdd.get_max_drawn_down().to_json(orient="records"))
 
     return response

@@ -9,9 +9,9 @@ router = APIRouter(prefix="/retrieve", tags=["retrieve"])
 @router.get("/earnings_estimate/{symbol}")
 async def get(symbol: str) -> list[earnings_estimate_model]:
 
-    response = earnings_estimate.get_earnings_estimate(symbol)
-    response = response.to_json(orient="records")
-    response = loads(response)
+    response = loads(
+        earnings_estimate.get_earnings_estimate(symbol).to_json(orient="records")
+    )
 
     return response
 
@@ -19,8 +19,8 @@ async def get(symbol: str) -> list[earnings_estimate_model]:
 @router.get("/earnings_estimate")
 async def get() -> list[earnings_estimate_model]:
 
-    response = earnings_estimate.get_earnings_estimate()
-    response = response.to_json(orient="records")
-    response = loads(response)
+    response = loads(
+        earnings_estimate.get_earnings_estimate().to_json(orient="records")
+    )
 
     return response
