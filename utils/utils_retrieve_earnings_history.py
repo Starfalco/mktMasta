@@ -12,7 +12,7 @@ def retrieve_earnings_history(symbol: str = None):
     data_path = os.path.join(parent_dir, "extracts", "earnings_history.parquet")
 
     df = pd.read_parquet(data_path, engine="pyarrow").reset_index()
-    df.rename(columns={"index": "period"}, inplace=True)
+    df.rename(columns={"index": "date"}, inplace=True)
 
     if symbol != None:
         df = df[df["Ticker"] == symbol.upper()]

@@ -11,6 +11,9 @@ async def get(symbol: str) -> list[peg_model]:
 
     peg = compute_peg(symbol)
 
-    response = loads(peg.get_peg().to_json(orient="records"))
+    try:
+        response = loads(peg.get_peg().to_json(orient="records"))
+    except:
+        response = peg.get_peg()
 
     return response
