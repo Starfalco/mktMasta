@@ -9,13 +9,13 @@ class compute_peg:
 
     def get_peg(self):
 
-        # try:
+        try:
 
-        df_peg = peg(self.symbol)
-        response = pd.DataFrame(df_peg.to_records())
+            df_peg = peg(self.symbol)
+            response = pd.DataFrame(df_peg.to_records())
 
-        # except Exception as e:
+        except Exception as e:
 
-        #     response = e
+            response = e
 
         return response
