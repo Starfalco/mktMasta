@@ -10,6 +10,7 @@
     "request_rate": "2",
     "prices_task_execution_in_minutes": "6",
     "mdd_task_execution_in_minutes": "6",
+    "volatility_task_execution_in_minutes": "6",
     "prices_earnings_estimate_in_minutes": "6",
     "earnings_history_in_minutes": "6",
     "earnings_dates_in_minutes": "6",

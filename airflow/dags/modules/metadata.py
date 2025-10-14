@@ -19,6 +19,7 @@ sys.path.append("/opt/utils/")
 
 # importing
 from utils_max_drawn_down import build_max_drawn_down as mdd
+from utils_volatility import build_volatility as vol
 from utils_retrieve_price import retrieve_price
 
 config_path = "dags/modules/config.json"
@@ -55,6 +56,43 @@ class Max_Drawn_Down(Metadata):
     def transform_data_for_ticker(self, ticker, progress=True):
         self.price = retrieve_price(ticker)
         df = mdd(self.price)
+        df["Ticker"] = ticker  # add a column for ticker name
+        self.results.append(df)
+
+        if progress:
+            _shared._PROGRESS_BAR.animate()
+
+    def transform_data(self, progress=True):
+
+        if progress:
+            _shared._PROGRESS_BAR = _utils.ProgressBar(len(self.tickers), "completed")
+
+        for ticker in self.tickers:
+            self.transform_data_for_ticker(ticker, progress=(progress))
+
+        # wait for all tasks to finish before writing the results to a delta_lake file
+        multitasking.wait_for_tasks()
+
+        try:
+            # concatenate all dataframes and write to the delta_lake file
+            all_data = pd.concat(self.results)
+        except:
+            all_data = pd.DataFrame(self.results)
+            # write_deltalake(self.output_path, all_data, mode='overwrite')
+        all_data.to_parquet(self.output_path)
+
+class Volatility(Metadata):
+    def __init__(self, tickers, starting_date, ending_date):
+        super().__init__(tickers)
+        self.starting_date = starting_date
+        self.ending_date = ending_date
+        self.results = []  # list to store all results
+        self.output_path = self.folder_path + "volatility.parquet"
+
+    @multitasking.task
+    def transform_data_for_ticker(self, ticker, progress=True):
+        self.price = retrieve_price(ticker)
+        df = vol(self.price)
         df["Ticker"] = ticker  # add a column for ticker name
         self.results.append(df)
 
