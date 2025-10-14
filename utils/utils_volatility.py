@@ -3,21 +3,26 @@ import pandas as pd
 
 def build_volatility(my_df: pd.DataFrame) -> pd.DataFrame:
 
-    Vol_Vector = pd.DataFrame()
+    # initializing daily_perf_df_concat
+    daily_perf_df_concat = pd.DataFrame()
     try:
         for index in range(0, len(my_df) - 1):
 
-            Dayli_Perf = my_df.loc[index + 1, "Close"] / my_df.loc[index, "Close"] - 1
-            Dayli_Perf = {"Dayli_Perf": [Dayli_Perf]}
-            Dayli_Perf = pd.DataFrame(Dayli_Perf, index=[index])
+            daily_perf = my_df.loc[index + 1, "Close"] / my_df.loc[index, "Close"] - 1
+            daily_perf_dict = {"daily_perf": [daily_perf]}
+            daily_perf_df = pd.DataFrame(daily_perf_dict, index=[index])
 
-            Vol_Vector = pd.concat([Vol_Vector, Dayli_Perf])
+            daily_perf_df_concat = pd.concat(
+                [daily_perf_df_concat, daily_perf_df],
+            )
+            print(daily_perf_df_concat)
 
-        Vol = Vol_Vector["Dayli_Perf"].std()
-        data = {"volatility": Vol}
+        volatility = daily_perf_df_concat["daily_perf"].std()
+        volatility_dict = {"volatility": volatility}
     except:
-        data = {"volatility": None}
+        volatility_dict = {"volatility": None}
 
-    output = pd.DataFrame(data, index = [0])
+    volatility_df = pd.DataFrame(volatility_dict, index=[0])
+    print(volatility_df)
 
-    return output
+    return volatility_df
