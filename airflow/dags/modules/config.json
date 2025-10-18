@@ -14,5 +14,6 @@
     "prices_earnings_estimate_in_minutes": "6",
     "earnings_history_in_minutes": "6",
     "earnings_dates_in_minutes": "6",
-    "info_task_execution_in_minutes": "12"
+    "info_task_execution_in_minutes": "12",
+    "peg_task_execution_in_minutes": "6"
 }
