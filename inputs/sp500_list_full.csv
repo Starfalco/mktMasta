@@ -1,0 +1,504 @@
+Company;Symbol
+Apple Inc.;AAPL
+Microsoft Corp;MSFT
+Nvidia Corp;NVDA
+Amazon.com Inc;AMZN
+Meta Platforms, Inc. Class A;META
+Alphabet Inc. Class A;GOOGL
+Alphabet Inc. Class C;GOOG
+Berkshire Hathaway Class B;BRK.B
+Eli Lilly & Co.;LLY
+Broadcom Inc.;AVGO
+Tesla, Inc.;TSLA
+Jpmorgan Chase & Co.;JPM
+Unitedhealth Group Incorporated;UNH
+Exxon Mobil Corporation;XOM
+Visa Inc.;V
+Procter & Gamble Company;PG
+Johnson & Johnson;JNJ
+Mastercard Incorporated;MA
+Costco Wholesale Corp;COST
+Home Depot, Inc.;HD
+Abbvie Inc.;ABBV
+Walmart Inc.;WMT
+Merck & Co., Inc.;MRK
+Netflix Inc;NFLX
+Bank of America Corporation;BAC
+Coca-Cola Company;KO
+Chevron Corporation;CVX
+Salesforce, Inc.;CRM
+Adobe Inc.;ADBE
+Pepsico, Inc.;PEP
+Thermo Fisher Scientific, Inc.;TMO
+Oracle Corp;ORCL
+Linde Plc;LIN
+Advanced Micro Devices;AMD
+Accenture Plc;ACN
+Wells Fargo & Co.;WFC
+Mcdonald's Corporation;MCD
+Cisco Systems, Inc.;CSCO
+Abbott Laboratories;ABT
+Ge Aerospace;GE
+Danaher Corporation;DHR
+Qualcomm Inc;QCOM
+Philip Morris International Inc.;PM
+Amgen Inc;AMGN
+Intuit Inc;INTU
+Texas Instruments Incorporated;TXN
+International Business Machines Corporation;IBM
+Pfizer Inc.;PFE
+Verizon Communications;VZ
+The Walt Disney Company;DIS
+Servicenow, Inc.;NOW
+Applied Materials Inc;AMAT
+Caterpillar Inc.;CAT
+Goldman Sachs Group Inc.;GS
+Nextra Energy, Inc.;NEE
+Intuitive Surgical Inc.;ISRG
+Comcast Corp;CMCSA
+S&p Global Inc.;SPGI
+Rtx Corporation;RTX
+Union Pacific Corp.;UNP
+American Express Company;AXP
+At&t Inc.;T
+Lowe's Companies Inc.;LOW
+Honeywell International, Inc.;HON
+Vertex Pharmaceuticals Inc;VRTX
+Tjx Companies, Inc.;TJX
+Morgan Stanley;MS
+Uber Technologies, Inc.;UBER
+Conocophillips;COP
+Progressive Corporation;PGR
+Booking Holdings Inc.;BKNG
+Elevance Health, Inc.;ELV
+Intel Corp;INTC
+Blackrock, Inc.;BLK
+Citigroup Inc.;C
+Eaton Corporation, Plcs;ETN
+Prologis, Inc.;PLD
+Lockheed Martin Corp.;LMT
+Regeneron Pharmaceuticals Inc;REGN
+Stryker Corporation;SYK
+Micron Technology, Inc.;MU
+Marsh & Mclennan Companies, Inc.;MMC
+Chubb Limited;CB
+Boston Scientific Corp.;BSX
+Analog Devices, Inc.;ADI
+Lam Research Corp;LRCX
+Medtronic Plc;MDT
+Automatic Data Processing;ADP
+American Tower Corporation;AMT
+Boeing Company;BA
+Palo Alto Networks, Inc.;PANW
+Kla Corporation;KLAC
+Bristol-Myers Squibb Co.;BMY
+Blackstone Inc.;BX
+T-Mobile Us, Inc.;TMUS
+The Southern Company;SO
+Gilead Sciences Inc;GILD
+The Charles Schwab Corporation;SCHW
+United Parcel Service, Inc. Class B;UPS
+The Cigna Group;CI
+Fiserv, Inc.;FI
+Deere & Company;DE
+Mondelez International, Inc. Class A;MDLZ
+Nike, Inc.;NKE
+Duke Energy Corporation;DUK
+Intercontinental Exchange Inc.;ICE
+Altria Group, Inc.;MO
+Arista Networks;ANET
+Starbucks Corp;SBUX
+Colgate-Palmolive Company;CL
+Zoetis Inc.;ZTS
+Synopsys Inc;SNPS
+Mckesson Corporation;MCK
+The Sherwin-Williams Company;SHW
+Kkr & Co. Inc.;KKR
+Equinix, Inc. Reit;EQIX
+Cvs Health Corporation;CVS
+Waste Management, Inc.;WM
+Trane Technologies Plc;TT
+Amphenol Corporation;APH
+Chipotle Mexican Grill, Inc.;CMG
+Moody's Corporation;MCO
+Aon Plc Class A;AON
+Cadence Design Systems;CDNS
+Eog Resources, Inc.;EOG
+Cme Group Inc.;CME
+Hca Healthcare, Inc.;HCA
+Transdigm Group Incorporated;TDG
+Pnc Financial Services Group;PNC
+3m Company;MMM
+Parker-Hannifin Corporation;PH
+Northrop Grumman Corp.;NOC
+Becton, Dickinson and Co.;BDX
+Paypal Holdings, Inc.;PYPL
+Csx Corporation;CSX
+Target Corporation;TGT
+U.S. Bancorp;USB
+Fedex Corporation;FDX
+Welltower Inc.;WELL
+O'reilly Automotive, Inc.;ORLY
+Schlumberger Limited;SLB
+General Dynamics Corporation;GD
+Motorola Solutions, Inc.;MSI
+Illinois Tool Works Inc.;ITW
+Cintas Corp;CTAS
+Emerson Electric Co.;EMR
+Air Products & Chemicals, Inc.;APD
+Freeport-Mcmoran Inc.;FCX
+Nxp Semiconductors N.v.;NXPI
+Arthur J. Gallagher & Co.;AJG
+Marathon Petroleum Corporation;MPC
+Ecolab, Inc.;ECL
+Phillips 66;PSX
+Airbnb, Inc. Class A;ABNB
+Roper Technologies, Inc.;ROP
+Truist Financial Corporation;TFC
+Newmont Corporation;NEM
+Constellation Energy Corporation;CEG
+Norfolk Southern Corp.;NSC
+Carrier Global Corporation;CARR
+Capital One Financial;COF
+Autozone, Inc.;AZO
+D.R. Horton Inc.;DHI
+American Electric Power Company, Inc.;AEP
+Aflac Inc.;AFL
+Williams Companies Inc.;WMB
+Marriot International Class A;MAR
+Crowdstrike Holdings, Inc. Class A;CRWD
+Autodesk Inc;ADSK
+Hilton Worldwide Holdings Inc.;HLT
+Sempra;SRE
+Valero Energy Corporation;VLO
+Realty Income Corporation;O
+Paccar Inc;PCAR
+Simon Property Group, Inc.;SPG
+American International Group, Inc.;AIG
+General Motors Company;GM
+Digital Realty Trust, Inc.;DLR
+Crown Castle Inc.;CCI
+The Travelers Companies, Inc.;TRV
+Bank of New York Mellon Corporation;BK
+Ross Stores Inc;ROST
+United Rentals, Inc.;URI
+Oneok, Inc.;OKE
+Public Storage;PSA
+Ge Vernova Inc.;GEV
+Kimberly-Clark Corp.;KMB
+Johnson Controls International Plc;JCI
+The Allstate Corporation;ALL
+Dominion Energy, Inc.;D
+Te Connectivity Ltd;TEL
+Microchip Technology Inc;MCHP
+Iqvia Holdings Inc.;IQV
+Copart Inc;CPRT
+Metlife, Inc.;MET
+Prudential Financial, Inc.;PRU
+Lennar Corporation Class A;LEN
+L3harris Technologies, Inc.;LHX
+Msci, Inc.;MSCI
+Humana Inc.;HUM
+Ameriprise Financial, Inc.;AMP
+Agilent Technologies Inc.;A
+Fidelity National Information Services, Inc.;FIS
+Ford Motor Company;F
+Cummins Inc.;CMI
+Centene Corporation;CNC
+W.W. Grainger, Inc.;GWW
+Kinder Morgan, Inc.;KMI
+Paychex Inc;PAYX
+Cencora, Inc.;COR
+Republic Services Inc.;RSG
+Public Service Enterprise Group Incorporated;PEG
+Idexx Laboratories Inc;IDXX
+Constellation Brands, Inc.;STZ
+Pg&e Corporation;PCG
+Occidental Petroleum Corporation;OXY
+Fair Isaac Corporation;FICO
+Hess Corporation;HES
+Fastenal Co;FAST
+General Mills, Inc.;GIS
+Gartner, Inc.;IT
+Otis Worldwide Corporation;OTIS
+Cognizant Technology Solutions;CTSH
+Exelon Corporation;EXC
+Baker Hughes Company;BKR
+Yum! Brands, Inc.;YUM
+Sysco Corporation;SYY
+Monolithic Power Systems, Inc.;MPWR
+Edwards Lifesciences Corp;EW
+Dow Inc.;DOW
+Nucor Corporation;NUE
+Corteva, Inc.;CTVA
+Verisk Analytics, Inc.;VRSK
+Charter Comm Inc Del Cl a;CHTR
+Howmet Aerospace Inc.;HWM
+Quanta Services, Inc.;PWR
+Ingersoll Rand Inc.;IR
+Ametek, Inc.;AME
+Fortinet, Inc.;FTNT
+Monster Beverage Corporation;MNST
+Old Dominion Freight Line;ODFL
+Electronic Arts Inc;EA
+Martin Marietta Materials;MLM
+The Kroger Co.;KR
+Arch Capital Group Ltd;ACGL
+Vulcan Materials Company;VMC
+Keurig Dr Pepper Inc.;KDP
+Kenvue Inc.;KVUE
+Diamondback Energy, Inc.;FANG
+Ge Healthcare Technologies Inc.;GEHC
+Royal Caribbean Group;RCL
+Equifax, Incorporated;EFX
+Consolidated Edison, Inc.;ED
+Dupont De Nemours, Inc.;DD
+Discover Financial Services;DFS
+Super Micro Computer, Inc.;SMCI
+Extra Space Storage, Inc.;EXR
+Cbre Group, Inc.;CBRE
+The Hartford Financial Services Group, Inc.;HIG
+Mettler-Toledo International;MTD
+Xcel Energy, Inc.;XEL
+Vici Properties Inc.;VICI
+Iron Mountain Inc.;IRM
+Xylem Inc;XYL
+Resmed Inc.;RMD
+Costar Group Inc;CSGP
+Edison International;EIX
+Moderna, Inc.;MRNA
+On Semiconductor Corp;ON
+Corning Incorporated;GLW
+Hp Inc.;HPQ
+Biogen Inc.;BIIB
+Rockwell Automation, Inc.;ROK
+Targa Resources Corp.;TRGP
+Avalonbay Communities, Inc.;AVB
+Archer Daniels Midland Company;ADM
+Halliburton Company;HAL
+Ppg Industries, Inc.;PPG
+Willis Towers Watson Public Limited Companys;WTW
+Devon Energy Corporation;DVN
+The Hershey Company;HSY
+Lululemon Athletica Inc.;LULU
+Cdw Corporation;CDW
+Ebay Inc;EBAY
+The Kraft Heinz Company;KHC
+American Water Works Company, Inc;AWK
+Wec Energy Group, Inc.;WEC
+Dexcom, Inc.;DXCM
+Nasdaq, Inc.;NDAQ
+Fifth Third Bancorp;FITB
+M&t Bank Corp.;MTB
+Tractor Supply Co;TSCO
+Pultegroup, Inc.;PHM
+Nvr, Inc.;NVR
+Wabtec Inc.;WAB
+Ansys Inc;ANSS
+Delta Air Lines, Inc.;DAL
+Dollar General Corp.;DG
+Garmin Ltd;GRMN
+Entergy Corporation;ETR
+Dte Energy Company;DTE
+Netapp, Inc;NTAP
+Broadridge Financial Solutions Inc;BR
+Cardinal Health, Inc.;CAH
+International Flavors & Fragrances Inc.;IFF
+State Street Corporation;STT
+Dover Corporation;DOV
+Global Payments, Inc.;GPN
+T Rowe Price Group Inc;TROW
+Lyondellbasell Industries N.v. Class A;LYB
+Vistra Corp.;VST
+Fortive Corporation;FTV
+Sba Communications Corp;SBAC
+Church & Dwight Co., Inc.;CHD
+Hewlett Packard Enterprise Company;HPE
+Equity Residential;EQR
+Steris Plc;STE
+Tyler Technologies, Inc.;TYL
+Brown & Brown, Inc.;BRO
+Veralto Corporation;VLTO
+First Solar, Inc.;FSLR
+Weyerhaeuser Company;WY
+Deckers Outdoor Corp;DECK
+Zimmer Biomet Holdings, Inc.;ZBH
+Keysight Technologies, Inc.;KEYS
+Eversource Energy;ES
+Take-Two Interactive Software Inc;TTWO
+The Estee Lauder Companies Inc. Class A;EL
+West Pharmaceutical Services, Inc.;WST
+Ppl Corporation;PPL
+Ventas, Inc.;VTR
+Firstenergy Corp.;FE
+Smurfit Westrock Plc;SW
+Axon Enterprise, Inc.;AXON
+Raymond James Financial, Inc.;RJF
+Ameren Corporation;AEE
+Ptc, Inc;PTC
+Waters Corp;WAT
+Dollar Tree Inc.;DLTR
+Huntington Bancshares Inc;HBAN
+Invitation Homes Inc.;INVH
+Cincinnati Financial Corp;CINF
+Hubbell Incorporated;HUBB
+Ball Corporation;BALL
+Molina Healthcare, Inc.;MOH
+Genuine Parts Company;GPC
+Corpay, Inc.;CPAY
+Regions Financial Corp.;RF
+Godaddy Inc;GDDY
+Aptiv Plc;APTV
+Synchrony Financial;SYF
+Eqt Corp;EQT
+Labcorp Holdings Inc.;LH
+Leidos Holdings, Inc.;LDOS
+Teledyne Technologies Incorporated;TDY
+Builders Firstsource, Inc.;BLDR
+Mccormick & Company, Incorporated Non-Vtg Cs;MKC
+Cboe Global Markets, Inc.;CBOE
+Hologic Inc;HOLX
+Western Digital Corp.;WDC
+Atmos Energy Corporation;ATO
+Cms Energy Corporation;CMS
+Seagate Technology Holdings Plcs;STX
+Coterra Energy Inc.;CTRA
+Citizens Financial Group, Inc.;CFG
+Omnicom Group Inc.;OMC
+Steel Dynamics Inc;STLD
+The Cooper Companies, Inc.;COO
+Teradyne, Inc.;TER
+Warner Bros. Discovery, Inc. Series a;WBD
+Essex Property Trust, Inc;ESS
+Jacobs Solutions Inc.;J
+Baxter International Inc.;BAX
+Northern Trust Corp;NTRS
+Alexandria Real Estate Equities, Inc.;ARE
+Expeditors International of Washington, Inc.;EXPD
+Centerpoint Energy, Inc.;CNP
+Packaging Corp of America;PKG
+Textron, Inc.;TXT
+Zebra Technologies Corporation;ZBRA
+Darden Restaurants, Inc.;DRI
+Principal Financial Group, Inc.;PFG
+Tyson Foods, Inc.;TSN
+Avery Dennison Corp.;AVY
+Skyworks Solutions Inc;SWKS
+Ulta Beauty, Inc.;ULTA
+Mid-America Apartment Communities, Inc.;MAA
+W.R. Berkley Corporation;WRB
+Verisign Inc;VRSN
+Masco Corporation;MAS
+Clorox Company;CLX
+Best Buy Company, Inc.;BBY
+Quest Diagnostics Inc.;DGX
+Kellanova;K
+Align Technology Inc;ALGN
+International Paper Co.;IP
+Everest Group, Ltd.;EG
+Carnival Corporation;CCL
+Southwest Airlines Co.;LUV
+Stanley Black & Decker, Inc.;SWK
+Factset Research Systems;FDS
+Marathon Oil Corporation;MRO
+Revvity, Inc.;RVTY
+Expedia Group, Inc.;EXPE
+Healthpeak Properties, Inc.;DOC
+Nrg Energy, Inc.;NRG
+Amcor Plcs;AMCR
+Enphase Energy, Inc.;ENPH
+Bunge Global Sa;BG
+Domino's Pizza Inc.;DPZ
+Idex Corporation;IEX
+Snap-on Incorporated;SNA
+Kimco Realty Corp.;KIM
+Loews Corporation;L
+Akamai Technologies Inc;AKAM
+Conagra Brands, Inc.;CAG
+Viatris Inc.;VTRS
+Alliant Energy Corporation;LNT
+Keycorp;KEY
+Nisource Inc.;NI
+Gen Digital Inc.;GEN
+Las Vegas Sands Corp.;LVS
+Pool Corporation;POOL
+Pentair Plc;PNR
+United Airlines Holdings, Inc.;UAL
+Cf Industries Holding, Inc.;CF
+Insulet Corporation;PODD
+Evergy, Inc.;EVRG
+Jb Hunt Transport Services Inc;JBHT
+Celanese Corporation;CE
+Rollins, Inc.;ROL
+Live Nation Entertainment Inc.;LYV
+Jabil Inc.;JBL
+Universal Health Services, Inc. Class B;UHS
+Nordson Corp;NDSN
+Trimble Inc.;TRMB
+Bio-Techne Corp.;TECH
+Carmax Inc.;KMX
+Charles River Laboratories International, Inc.;CRL
+Udr, Inc.;UDR
+Henry (Jack) & Associates;JKHY
+Epam Systems, Inc.;EPAM
+The J.M. Smucker Company;SJM
+Camden Property Trust;CPT
+Juniper Networks Inc;JNPR
+Eastman Chemical Company;EMN
+Aes Corporation;AES
+C.H. Robinson Worldwide, Inc.;CHRW
+The Interpublic Group of Companies, Inc.;IPG
+Host Hotels & Resorts, Inc.;HST
+Allegion Public Limited Company;ALLE
+F5, Inc.;FFIV
+Regency Centers Corporation;REG
+Apa Corporation;APA
+Teleflex Incorporated;TFX
+Albemarle Corporation;ALB
+Catalent, Inc.;CTLT
+Qorvo, Inc.;QRVO
+Lkq Corporation;LKQ
+Huntington Ingalls Industries, Inc.;HII
+News Corporation Class A;NWSA
+Match Group, Inc;MTCH
+A.O. Smith Corporation;AOS
+Bxp, Inc.;BXP
+Pinnacle West Capital Corporation;PNW
+Molson Coors Beverage Company Class B;TAP
+Henry Schein Inc;HSIC
+Incyte Genomics Inc;INCY
+Campbell Soup Company;CPB
+The Mosaic Company;MOS
+Hormel Foods Corporation;HRL
+Mgm Resorts International;MGM
+Fox Corporation Class A;FOXA
+Assurant, Inc.;AIZ
+Tapestry, Inc.;TPR
+Generac Holdings Inc;GNRC
+Dayforce, Inc.;DAY
+Walgreens Boots Alliance, Inc;WBA
+Lamb Weston Holdings, Inc.;LW
+Marketaxess Holdings Inc.;MKTX
+Hasbro, Inc.;HAS
+Federal Realty Investment Trust;FRT
+Paycom Software, Inc.;PAYC
+Brown-Forman Corporation Class B;BF.B
+Fmc Corporation;FMC
+Mohawk Industries, Inc.;MHK
+Solventum Corporation;SOLV
+Bath & Body Works, Inc.;BBWI
+Globe Life Inc.;GL
+Caesars Entertainment, Inc.;CZR
+Borgwarner Inc.;BWA
+Invesco Ltd;IVZ
+Wynn Resorts Ltd;WYNN
+Davita Inc.;DVA
+Norwegian Cruise Line Holdings Ltd.s;NCLH
+Etsy, Inc.;ETSY
+Bio-Rad Laboratories, Inc.Class A;BIO
+Ralph Lauren Corporation;RL
+American Airlines Group Inc.;AAL
+Franklin Resources, Inc.;BEN
+Paramount Global Class B;PARA
+Fox Corporation Class B;FOX
+News Corporation Class B;NWS

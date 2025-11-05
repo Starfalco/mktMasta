@@ -13,5 +13,6 @@
                 "POST", 
                 "PUT", 
                 "DELETE"
-        ]
+        ],
+        "path_utils" : "/code/utils/"
 }
