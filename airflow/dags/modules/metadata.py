@@ -82,6 +82,7 @@ class Max_Drawn_Down(Metadata):
             # write_deltalake(self.output_path, all_data, mode='overwrite')
         all_data.to_parquet(self.output_path)
 
+
 class Volatility(Metadata):
     def __init__(self, tickers, starting_date, ending_date):
         super().__init__(tickers)
@@ -118,6 +119,7 @@ class Volatility(Metadata):
             all_data = pd.DataFrame(self.results)
             # write_deltalake(self.output_path, all_data, mode='overwrite')
         all_data.to_parquet(self.output_path)
+
 
 class peg(Metadata):
     def __init__(self, tickers):

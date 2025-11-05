@@ -34,8 +34,7 @@ def volatility_task():
 
 
 def peg_task():
-    peg_transform = peg(
-        get_input())
+    peg_transform = peg(get_input())
     peg_transform.transform_data()
 
 
