@@ -1,5 +1,17 @@
+import json
+
+config_path = "/code/backend/src/config.json"
+
+with open(config_path) as stream:
+    config = json.load(stream)
+
 import pandas as pd
-from ....utils.utils_peg import build_peg as peg
+import sys
+
+# setting path
+sys.path.append(config["path_utils"])
+
+from utils_peg import build_peg as peg
 
 
 class compute_peg:

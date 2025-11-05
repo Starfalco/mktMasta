@@ -15,5 +15,7 @@
     "earnings_history_in_minutes": "6",
     "earnings_dates_in_minutes": "6",
     "info_task_execution_in_minutes": "12",
-    "peg_task_execution_in_minutes": "6"
+    "peg_task_execution_in_minutes": "6",
+    "path_modules": "/opt/airflow/dags/modules/",
+    "path_utils": "/opt/utils/"
 }

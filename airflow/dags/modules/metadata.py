@@ -1,6 +1,11 @@
-from abc import ABC, abstractmethod
-
 import json
+
+config_path = "/opt/airflow/dags/modules/config.json"
+
+with open(config_path) as stream:
+    config = json.load(stream)
+
+from abc import ABC, abstractmethod
 import pandas as pd
 
 # from deltalake.writer import write_deltalake
@@ -9,24 +14,19 @@ import signal
 import sys
 
 # setting path
-sys.path.append("/opt/airflow/dags/modules/")
+sys.path.append(config["path_modules"])
 
 import _utils
 import _shared
 
 # setting path
-sys.path.append("/opt/utils/")
+sys.path.append(config["path_utils"])
 
 # importing
 from utils_max_drawn_down import build_max_drawn_down as mdd
 from utils_volatility import build_volatility as vol
 from utils_retrieve_price import retrieve_price
 from utils_peg import build_peg
-
-config_path = "dags/modules/config.json"
-
-with open(config_path) as stream:
-    config = json.load(stream)
 
 # This is required to handle keyboard interruptions and
 # to kill all threads if such an interruption occurs.

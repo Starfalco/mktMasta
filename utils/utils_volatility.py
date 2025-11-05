@@ -15,7 +15,6 @@ def build_volatility(my_df: pd.DataFrame) -> pd.DataFrame:
             daily_perf_df_concat = pd.concat(
                 [daily_perf_df_concat, daily_perf_df],
             )
-            print(daily_perf_df_concat)
 
         volatility = daily_perf_df_concat["daily_perf"].std()
         volatility_dict = {"volatility": volatility}
@@ -23,6 +22,5 @@ def build_volatility(my_df: pd.DataFrame) -> pd.DataFrame:
         volatility_dict = {"volatility": None}
 
     volatility_df = pd.DataFrame(volatility_dict, index=[0])
-    print(volatility_df)
 
     return volatility_df

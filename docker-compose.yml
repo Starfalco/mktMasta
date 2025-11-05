@@ -41,17 +41,17 @@ services:
       retries: 5
     restart: always
 
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   container_name: pgadmin4_container
-  #   restart: always
-  #   ports:
-  #     - "8888:80"
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: admin@admin.com
-  #     PGADMIN_DEFAULT_PASSWORD: admin
-  #   volumes:
-  #     - pgadmin-data:/var/lib/pgadmin
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
 
   airflow-webserver:
     <<: *airflow-common
@@ -80,27 +80,27 @@ services:
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
 
-  # api:
-  #   build: .
-  #   working_dir: /code
-  #   image: ${FASTAPI_IMAGE_NAME:-mktmasta_fastapi:latest}
-  #   ports:
-  #    - "8000:8000"
-  #   volumes:
-  #    - ./backend/src:/code/backend/src
-  #    - ./utils:/code/utils
-  #    - ./extracts:/code/extracts
-  #    - ./inputs:/code/inputs
-  #   command: ["fastapi", "dev", "--host", "0.0.0.0", "backend/src/main.py"]
+  api:
+    build: .
+    working_dir: /code
+    image: ${FASTAPI_IMAGE_NAME:-mktmasta_fastapi:latest}
+    ports:
+     - "8000:8000"
+    volumes:
+     - ./backend/src:/code/backend/src
+     - ./utils:/code/utils
+     - ./extracts:/code/extracts
+     - ./inputs:/code/inputs
+    command: ["fastapi", "run", "backend/src/main.py"]
 
-  # ui:
-  #   build: .
-  #   working_dir: /frontend
-  #   image: ${ANGULAR_IMAGE_NAME:-mktmasta_angular:latest}
-  #   ports:
-  #    - "4200:4200"
-  #   command: ["ng", "serve", "--host", "0.0.0.0"]
+  ui:
+    build: .
+    working_dir: /frontend
+    image: ${ANGULAR_IMAGE_NAME:-mktmasta_angular:latest}
+    ports:
+     - "4200:4200"
+    command: ["ng", "serve", "--host", "0.0.0.0"]
 
 volumes:
   postgres-db-volume:
-  # pgadmin-data:
+  pgadmin-data:
