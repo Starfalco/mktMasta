@@ -10,6 +10,7 @@ from .extract_earnings_dates import extracts_earnings_dates_controller
 from .compute_max_drawn_down import compute_max_drawn_down_controller
 from .compute_volatility import compute_volatility_controller
 from .compute_peg import compute_peg_controller
+from .compute_peg_benchmark import compute_peg_benchmark_controller
 import json
 
 config_path = "backend/src/config.json"
@@ -38,3 +39,4 @@ app.include_router(extracts_earnings_dates_controller.router)
 app.include_router(compute_max_drawn_down_controller.router)
 app.include_router(compute_volatility_controller.router)
 app.include_router(compute_peg_controller.router)
+app.include_router(compute_peg_benchmark_controller.router)

@@ -9,4 +9,4 @@ class earnings_history_model(BaseModel):
     epsEstimate: Optional[float] = None
     epsDifference: Optional[float] = None
     surprisePercent: Optional[float] = None
-    Ticker: Optional[str] = None
+    ticker: Optional[str] = None

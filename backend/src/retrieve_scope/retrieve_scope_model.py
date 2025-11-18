@@ -1,7 +1,7 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class scope_model(BaseModel):
-    Company: Optional[str] = None
-    Symbol: Optional[str] = None
+    company: Optional[str] = Field(validation_alias="Company")
+    ticker: Optional[str] = Field(validation_alias="Symbol")

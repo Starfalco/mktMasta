@@ -90,6 +90,7 @@ services:
      - ./backend/src:/code/backend/src
      - ./utils:/code/utils
      - ./extracts:/code/extracts
+     - ./metadata:/code/metadata
      - ./inputs:/code/inputs
     command: ["fastapi", "run", "backend/src/main.py"]
 

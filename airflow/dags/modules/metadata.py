@@ -57,7 +57,7 @@ class Max_Drawn_Down(Metadata):
     def transform_data_for_ticker(self, ticker, progress=True):
         self.price = retrieve_price(ticker)
         df = mdd(self.price)
-        df["Ticker"] = ticker  # add a column for ticker name
+        df["ticker"] = ticker  # add a column for ticker name
         self.results.append(df)
 
         if progress:
@@ -95,7 +95,7 @@ class Volatility(Metadata):
     def transform_data_for_ticker(self, ticker, progress=True):
         self.price = retrieve_price(ticker)
         df = vol(self.price)
-        df["Ticker"] = ticker  # add a column for ticker name
+        df["ticker"] = ticker  # add a column for ticker name
         self.results.append(df)
 
         if progress:

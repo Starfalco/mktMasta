@@ -13,6 +13,6 @@ def retrieve_price(symbol: str):
 
     df = pd.read_parquet(data_path, engine="pyarrow")
     df = pd.DataFrame(df.to_records())
-    df = df[df["Ticker"] == symbol.upper()].reset_index()
+    df = df[df["ticker"] == symbol.upper()].reset_index()
 
     return df

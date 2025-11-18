@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import json, os
+import json, os, sys
 
 import yfinance as yf
 import pandas as pd
@@ -20,6 +20,12 @@ config_path = os.path.join(current_dir, "config.json")
 
 with open(config_path) as stream:
     config = json.load(stream)
+
+# setting path
+sys.path.append(config["path_utils"])
+
+# importing
+from utils_yfinance import download_price
 
 # This is required to handle keyboard interruptions and
 # to kill all threads if such an interruption occurs.
@@ -54,13 +60,12 @@ class Prices(Extract):
 
     def get_data(self):
         # write_deltalake(self.output_path, yf.download(self.tickers, start = self.starting_date, end = self.ending_date, group_by = 'ticker').stack(level=0), mode='overwrite')
-        yf.download(
+        download_price(
             self.tickers,
-            start=self.starting_date,
-            end=self.ending_date,
-            group_by="ticker",
-            session=self.session,
-        ).stack(level=0).to_parquet(self.output_path)
+            self.starting_date,
+            self.ending_date,
+            self.session,
+        ).to_parquet(self.output_path)
 
 
 class Earnings_Estimate(Extract):
@@ -74,7 +79,7 @@ class Earnings_Estimate(Extract):
         df = pd.DataFrame(
             yf.Ticker(ticker, session=self.session).get_earnings_estimate()
         )
-        df["Ticker"] = ticker  # add a column for ticker name
+        df["ticker"] = ticker  # add a column for ticker name
         self.results.append(df)
 
         if progress:
@@ -106,7 +111,7 @@ class Earnings_Dates(Extract):
     @multitasking.task
     def get_data_for_ticker(self, ticker, progress=True):
         df = pd.DataFrame(yf.Ticker(ticker, session=self.session).get_calendar())
-        df["Ticker"] = ticker  # add a column for ticker name
+        df["ticker"] = ticker  # add a column for ticker name
         self.results.append(df)
 
         if progress:
@@ -140,7 +145,7 @@ class Earnings_History(Extract):
         df = pd.DataFrame(
             yf.Ticker(ticker, session=self.session).get_earnings_history()
         )
-        df["Ticker"] = ticker  # add a column for ticker name
+        df["ticker"] = ticker  # add a column for ticker name
         self.results.append(df)
 
         if progress:
@@ -181,7 +186,7 @@ class Info(Extract):
         except:
             sector = "unknown"
         df = pd.DataFrame.from_records(
-            {"Ticker": [ticker], "industry": [industry], "sector": [sector]}
+            {"ticker": [ticker], "industry": [industry], "sector": [sector]}
         )
         self.results.append(df)
 

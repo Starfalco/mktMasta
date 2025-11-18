@@ -10,4 +10,4 @@ class earnings_estimate_model(BaseModel):
     yearAgoEps: Optional[float] = None
     numberOfAnalysts: Optional[float] = None
     growth: Optional[float] = None
-    Ticker: Optional[str] = None
+    ticker: Optional[str] = None

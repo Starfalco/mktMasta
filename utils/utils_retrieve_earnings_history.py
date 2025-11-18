@@ -15,6 +15,6 @@ def retrieve_earnings_history(symbol: str = None):
     df.rename(columns={"index": "date"}, inplace=True)
 
     if symbol != None:
-        df = df[df["Ticker"] == symbol.upper()]
+        df = df[df["ticker"] == symbol.upper()]
 
     return df
