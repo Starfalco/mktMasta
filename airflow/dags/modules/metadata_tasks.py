@@ -38,6 +38,11 @@ def peg_task():
     peg_transform.transform_data()
 
 
+def peg_benchmark_task():
+    peg_transform = peg_benchmark(get_input())
+    peg_transform.transform_data()
+
+
 if __name__ == "__main__":
 
     mdd_task()

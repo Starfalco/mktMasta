@@ -27,6 +27,7 @@ from utils_max_drawn_down import build_max_drawn_down as mdd
 from utils_volatility import build_volatility as vol
 from utils_retrieve_price import retrieve_price
 from utils_peg import build_peg
+from utils_peg_benchmark import build_peg_benchmark
 
 # This is required to handle keyboard interruptions and
 # to kill all threads if such an interruption occurs.
@@ -154,3 +155,38 @@ class peg(Metadata):
             all_data = pd.DataFrame(self.results)
             # write_deltalake(self.output_path, all_data, mode='overwrite')
         all_data.to_parquet(self.output_path)
+
+
+class peg_benchmark(Metadata):
+    def __init__(self, tickers):
+        super().__init__(tickers)
+        self.results = []  # list to store all results
+        self.output_path = self.folder_path + "peg_benchmark.parquet"
+
+    @multitasking.task
+    def transform_data_for_ticker(self, ticker, progress=True):
+        # self.price = retrieve_price(ticker)
+        df = build_peg_benchmark(ticker)
+        self.results.append(df)
+
+        if progress:
+            _shared._PROGRESS_BAR.animate()
+
+    def transform_data(self, progress=True):
+
+        if progress:
+            _shared._PROGRESS_BAR = _utils.ProgressBar(len(self.tickers), "completed")
+
+        for ticker in self.tickers:
+            self.transform_data_for_ticker(ticker, progress=(progress))
+
+        # wait for all tasks to finish before writing the results to a delta_lake file
+        multitasking.wait_for_tasks()
+
+        try:
+            # concatenate all dataframes and write to the delta_lake file
+            all_data = pd.concat(self.results)
+        except:
+            all_data = pd.DataFrame(self.results)
+            # write_deltalake(self.output_path, all_data, mode='overwrite')
+        all_data.reset_index(drop=True).to_parquet(self.output_path)
