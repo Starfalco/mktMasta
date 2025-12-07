@@ -13,6 +13,7 @@ from .compute_peg import compute_peg_controller
 from .compute_peg_benchmark import compute_peg_benchmark_controller
 from .init_cache import init_cache_controller
 from .filter_numeric_field import filter_numeric_field_controller
+from .filter_string_field import filter_string_field_controller
 import json
 
 config_path = "backend/src/config.json"
@@ -44,3 +45,4 @@ app.include_router(compute_volatility_controller.router)
 app.include_router(compute_peg_controller.router)
 app.include_router(compute_peg_benchmark_controller.router)
 app.include_router(filter_numeric_field_controller.router)
+app.include_router(filter_string_field_controller.router)
