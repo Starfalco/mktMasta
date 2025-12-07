@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 
-def retrieve_peg_benchmark(symbol: str = None):
+def retrieve_peg_benchmark(symbol: str = None) -> pd.DataFrame:
 
     # To get the directory of the script/file:
     current_dir = os.path.dirname(os.path.realpath(__file__))

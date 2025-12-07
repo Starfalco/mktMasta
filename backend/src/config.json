@@ -14,5 +14,6 @@
                 "PUT", 
                 "DELETE"
         ],
-        "path_utils" : "/code/utils/"
+        "path_utils" : "/code/utils/",
+        "path_screener_cache" : "/code/backend/src/cache/screener_cache.parquet"
 }
