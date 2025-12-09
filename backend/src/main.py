@@ -12,6 +12,7 @@ from .compute_volatility import compute_volatility_controller
 from .compute_peg import compute_peg_controller
 from .compute_peg_benchmark import compute_peg_benchmark_controller
 from .init_cache import init_cache_controller
+from .retrieve_cache import retrieve_cache_controller
 from .filter_numeric_field import filter_numeric_field_controller
 from .sort_by_fields import sort_by_fields_controller
 from .filter_field_unique_values import filter_field_unique_values_controller
@@ -36,6 +37,7 @@ app.add_middleware(
 )
 
 app.include_router(init_cache_controller.router)
+app.include_router(retrieve_cache_controller.router)
 app.include_router(retrieve_earnings_estimate_controller.router)
 app.include_router(retrieve_earnings_history_controller.router)
 app.include_router(retrieve_price_controller.router)
