@@ -1,0 +1,44 @@
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  background-color: rgb(4, 159, 45);
+}
+
+td,th
+{
+    background-color: rgb(207, 218, 216);
+    column-width: 100px;
+    
+}
+
+table
+{
+border-top: solid black 10px;
+border-bottom:  solid black 10px;
+width: 20%;
+}
+.mat-cell
+{
+    columns:  50px;
+}
+
+.mat-header-cell {
+  color: red;
+}
+
+.table-container {
+  max-width: 100%;
+  max-height: 150px;        /* controls height */
+  overflow: auto;           /* enables scroll */
+}
+
+table {
+  width: 90%;
+  table-layout: fixed;      /* prevents column explosion */
+}
+
+.chart-container{
+background-color: whitesmoke;
+color: red;
+}

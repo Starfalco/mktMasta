@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline">
+  <mat-label>Scope</mat-label>
+  <mat-select (selectionChange)="onScopeChange($event.value)">
+    <mat-option *ngFor="let scope of ScopesItems()" [value]="scope.Symbol">
+      {{ scope.Company }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

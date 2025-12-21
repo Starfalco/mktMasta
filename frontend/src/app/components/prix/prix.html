@@ -1,0 +1,111 @@
+<mat-form-field appearance="outline">
+  <mat-label>Scope</mat-label>
+  <mat-select (selectionChange)="onScopeChange($event.value)">
+    <mat-option *ngFor="let scope of scopesItems()" [value]="scope.Symbol">
+      {{scope.Symbol}} {{ scope.Company}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="chart-container">
+  <canvas id="MyChart"></canvas>
+</div>
+
+<div class="chart-container">
+  <canvas id="MyChart1"></canvas>
+</div>
+
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="pricesItems()">
+    <caption>My Awesome Data Table</caption>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let row">{{ row.Date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ticker">
+      <th mat-header-cell *matHeaderCellDef>Ticker</th>
+      <td mat-cell *matCellDef="let row">{{ row.Ticker }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="open">
+      <th mat-header-cell *matHeaderCellDef>Open</th>
+      <td mat-cell *matCellDef="let row">{{ row.Open }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="high">
+      <th mat-header-cell *matHeaderCellDef>High</th>
+      <td mat-cell *matCellDef="let row">{{ row.High }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="low">
+      <th mat-header-cell *matHeaderCellDef>Low</th>
+      <td mat-cell *matCellDef="let row">{{ row.Low }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="close">
+      <th mat-header-cell *matHeaderCellDef>Close</th>
+      <td mat-cell *matCellDef="let row">{{ row.Close }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="volume">
+      <th mat-header-cell *matHeaderCellDef>Volume</th>
+      <td mat-cell *matCellDef="let row">{{ row.Volume }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+</div>
+
+<table mat-table [dataSource]="EarningEstItems()">
+
+  <ng-container matColumnDef="estPeriod">
+    <th mat-header-cell *matHeaderCellDef>Period</th>
+    <td mat-cell *matCellDef="let row">{{ row.period }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="estAvg">
+    <th mat-header-cell *matHeaderCellDef>Avg</th>
+    <td mat-cell *matCellDef="let row">{{ row.avg }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="estLow">
+    <th mat-header-cell *matHeaderCellDef>Low</th>
+    <td mat-cell *matCellDef="let row">{{ row.low }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="estHigh">
+    <th mat-header-cell *matHeaderCellDef>High</th>
+    <td mat-cell *matCellDef="let row">{{ row.high }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="estYearAgoEps">
+    <th mat-header-cell *matHeaderCellDef>Year Ago EPS</th>
+    <td mat-cell *matCellDef="let row">{{ row.yearAgoEps }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="estAnalysts">
+    <th mat-header-cell *matHeaderCellDef>Analysts</th>
+    <td mat-cell *matCellDef="let row">{{ row.numberOfAnalysts }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="estGrowth">
+    <th mat-header-cell *matHeaderCellDef>Growth</th>
+    <td mat-cell *matCellDef="let row">{{ row.growth }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="estTicker">
+    <th mat-header-cell *matHeaderCellDef>Ticker</th>
+    <td mat-cell *matCellDef="let row">{{ row.Ticker }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnses"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnses"></tr>
+</table>
+
+
+
+
+

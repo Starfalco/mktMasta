@@ -22,4 +22,26 @@ export const routes: Routes = [{
         return import('./components/price/price').then((m)=>m.pricetable)
     },
 },
+{
+    path: 'graph',
+    pathMatch: 'full',
+    loadComponent: () => {
+        return import('./graph/earning/earning').then((m)=>m.AppComponent)
+    }
+},
+{
+    path: 'scopes',
+    pathMatch: 'full',
+    loadComponent: () => {
+        return import('./components/scopes/scopes').then((m)=>m.RetrieveScopes)
+    }
+},
+{
+    path: 'Prix',
+    pathMatch: 'full',
+    loadComponent: () => {
+        return import('./components/prix/prix').then((m)=>m.RetrievePrixComponent)
+    }
+}
+
 ];

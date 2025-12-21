@@ -10,19 +10,19 @@ import { TableBasicExample } from './components/table-basic-example/table-basic-
 import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, UI, Header],
+  imports: [RouterOutlet, UI, Header, ],
   template: 
   `<app-header/>
   <app-ui/>
-
-  
+    
   <main>
   <router-outlet/>
   </main>
