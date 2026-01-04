@@ -15,6 +15,6 @@ def retrieve_earnings_estimate(symbol: str = None):
     df.rename(columns={"index": "period"}, inplace=True)
 
     if symbol != None:
-        df = df[df["Ticker"] == symbol.upper()]
+        df = df[df["ticker"] == symbol.upper()]
 
     return df

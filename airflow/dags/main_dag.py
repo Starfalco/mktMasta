@@ -12,7 +12,7 @@ from extracts_tasks import (
     earnings_history_task,
     info_task,
 )
-from metadata_tasks import mdd_task, volatility_task, peg_task
+from metadata_tasks import mdd_task, volatility_task, peg_task, peg_benchmark_task
 import json
 
 config_path = "dags/modules/config.json"
@@ -94,7 +94,15 @@ with dag:
         ),
         dag=dag,
     )
+    t7 = PythonOperator(
+        task_id="peg_benchmark_task",
+        python_callable=peg_benchmark_task,
+        execution_timeout=timedelta(
+            minutes=int(config["peg_benchmark_task_execution_in_minutes"])
+        ),
+        dag=dag,
+    )
 
-    t1 >> t2 >> t3 >> t4 >> t5 >> t6
+    t1 >> t2 >> t3 >> t4 >> t5 >> t6 >> t7
     t1 >> t1_1
     t1 >> t1_2

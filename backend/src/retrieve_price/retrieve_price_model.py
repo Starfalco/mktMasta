@@ -1,14 +1,14 @@
 from typing import Optional
 from pydantic import BaseModel, Field
-from datetime import date
+from datetime import date as dt
 
 
 class retrieve_price_model(BaseModel):
-    Date: Optional[date] = None
-    Ticker: Optional[str] = None
-    Open: Optional[float] = None
-    High: Optional[float] = None
-    Low: Optional[float] = None
-    Close: Optional[float] = None
-    Volume: Optional[float] = None
-    AdjClose: Optional[float] = Field(alias="Adj Close")
+    date: Optional[dt]
+    ticker: Optional[str]
+    open: Optional[float] = None
+    high: Optional[float] = None
+    low: Optional[float] = None
+    close: Optional[float] = None
+    volume: Optional[float] = None
+    adjClose: Optional[float] = None

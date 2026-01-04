@@ -10,6 +10,13 @@ from .extract_earnings_dates import extracts_earnings_dates_controller
 from .compute_max_drawn_down import compute_max_drawn_down_controller
 from .compute_volatility import compute_volatility_controller
 from .compute_peg import compute_peg_controller
+from .compute_peg_benchmark import compute_peg_benchmark_controller
+from .init_cache import init_cache_controller
+from .retrieve_cache import retrieve_cache_controller
+from .filter_numeric_field import filter_numeric_field_controller
+from .sort_by_fields import sort_by_fields_controller
+from .filter_field_unique_values import filter_field_unique_values_controller
+from .filter_string_field import filter_string_field_controller
 import json
 
 config_path = "backend/src/config.json"
@@ -29,6 +36,8 @@ app.add_middleware(
     allow_headers=[],
 )
 
+app.include_router(init_cache_controller.router)
+app.include_router(retrieve_cache_controller.router)
 app.include_router(retrieve_earnings_estimate_controller.router)
 app.include_router(retrieve_earnings_history_controller.router)
 app.include_router(retrieve_price_controller.router)
@@ -38,3 +47,8 @@ app.include_router(extracts_earnings_dates_controller.router)
 app.include_router(compute_max_drawn_down_controller.router)
 app.include_router(compute_volatility_controller.router)
 app.include_router(compute_peg_controller.router)
+app.include_router(compute_peg_benchmark_controller.router)
+app.include_router(filter_numeric_field_controller.router)
+app.include_router(sort_by_fields_controller.router)
+app.include_router(filter_field_unique_values_controller.router)
+app.include_router(filter_string_field_controller.router)

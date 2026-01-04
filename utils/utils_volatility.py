@@ -8,7 +8,7 @@ def build_volatility(my_df: pd.DataFrame) -> pd.DataFrame:
     try:
         for index in range(0, len(my_df) - 1):
 
-            daily_perf = my_df.loc[index + 1, "Close"] / my_df.loc[index, "Close"] - 1
+            daily_perf = my_df.loc[index + 1, "close"] / my_df.loc[index, "close"] - 1
             daily_perf_dict = {"daily_perf": [daily_perf]}
             daily_perf_df = pd.DataFrame(daily_perf_dict, index=[index])
 

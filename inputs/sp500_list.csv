@@ -28,6 +28,7 @@ Coca-Cola Company;KO
 Chevron Corporation;CVX
 Salesforce, Inc.;CRM
 Adobe Inc.;ADBE
+<<<<<<< HEAD
 Pepsico, Inc.;PEP
 Thermo Fisher Scientific, Inc.;TMO
 Oracle Corp;ORCL
@@ -48,3 +49,6 @@ Texas Instruments Incorporated;TXN
 International Business Machines Corporation;IBM
 Pfizer Inc.;PFE
 Verizon Communications;VZ
+=======
+Pepsico, Inc.;PEP
+>>>>>>> c4049aa8be43ff0952fbffa0c51055b1e8c1f255

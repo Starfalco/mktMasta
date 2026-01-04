@@ -18,61 +18,61 @@ def build_peg(my_ticker: str) -> pd.DataFrame:
 
     earnings_estimate = retrieve_earnings_estimate(my_ticker)
     earnings_f0 = earnings_estimate[
-        (earnings_estimate["Ticker"] == my_ticker)
+        (earnings_estimate["ticker"] == my_ticker)
         & (earnings_estimate["period"] == "0y")
     ]["yearAgoEps"].values[0]
     earnings_f1 = earnings_estimate[
-        (earnings_estimate["Ticker"] == my_ticker)
+        (earnings_estimate["ticker"] == my_ticker)
         & (earnings_estimate["period"] == "0y")
     ]["avg"].values[0]
     earnings_f2 = earnings_estimate[
-        (earnings_estimate["Ticker"] == my_ticker)
+        (earnings_estimate["ticker"] == my_ticker)
         & (earnings_estimate["period"] == "+1y")
     ]["avg"].values[0]
 
     growth_f1 = earnings_estimate[
-        (earnings_estimate["Ticker"] == my_ticker)
+        (earnings_estimate["ticker"] == my_ticker)
         & (earnings_estimate["period"] == "0y")
     ]["growth"].values[0]
     growth_f2 = earnings_estimate[
-        (earnings_estimate["Ticker"] == my_ticker)
+        (earnings_estimate["ticker"] == my_ticker)
         & (earnings_estimate["period"] == "+1y")
     ]["growth"].values[0]
 
     nb_analysts_f1 = earnings_estimate[
-        (earnings_estimate["Ticker"] == my_ticker)
+        (earnings_estimate["ticker"] == my_ticker)
         & (earnings_estimate["period"] == "0y")
     ]["numberOfAnalysts"].values[0]
     nb_analysts_f2 = earnings_estimate[
-        (earnings_estimate["Ticker"] == my_ticker)
+        (earnings_estimate["ticker"] == my_ticker)
         & (earnings_estimate["period"] == "+1y")
     ]["numberOfAnalysts"].values[0]
 
     high_to_low_eps_f1 = (
         earnings_estimate[
-            (earnings_estimate["Ticker"] == my_ticker)
+            (earnings_estimate["ticker"] == my_ticker)
             & (earnings_estimate["period"] == "0y")
         ]["high"].values[0]
         / earnings_estimate[
-            (earnings_estimate["Ticker"] == my_ticker)
+            (earnings_estimate["ticker"] == my_ticker)
             & (earnings_estimate["period"] == "0y")
         ]["low"].values[0]
         - 1
     )
     high_to_low_eps_f2 = (
         earnings_estimate[
-            (earnings_estimate["Ticker"] == my_ticker)
+            (earnings_estimate["ticker"] == my_ticker)
             & (earnings_estimate["period"] == "+1y")
         ]["high"].values[0]
         / earnings_estimate[
-            (earnings_estimate["Ticker"] == my_ticker)
+            (earnings_estimate["ticker"] == my_ticker)
             & (earnings_estimate["period"] == "+1y")
         ]["low"].values[0]
         - 1
     )
 
     price = retrieve_price(my_ticker)
-    current_price = price["Close"].iloc[-1]
+    current_price = price["close"].iloc[-1]
 
     pe_f0 = current_price / earnings_f0
     pe_f1 = current_price / earnings_f1
@@ -82,7 +82,7 @@ def build_peg(my_ticker: str) -> pd.DataFrame:
     peg_f2 = pe_f2 / growth_f2
 
     earnings_history = retrieve_earnings_history(my_ticker)
-    surprise_average = earnings_history[(earnings_history["Ticker"] == my_ticker)][
+    surprise_average = earnings_history[(earnings_history["ticker"] == my_ticker)][
         "surprisePercent"
     ].mean()
 

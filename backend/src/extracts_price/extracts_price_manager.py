@@ -1,7 +1,19 @@
-import pandas as pd
-import yfinance as yf
+import json
 from curl_cffi import requests
 from datetime import date
+
+config_path = "/code/backend/src/config.json"
+
+with open(config_path) as stream:
+    config = json.load(stream)
+
+import pandas as pd
+import sys
+
+# setting path
+sys.path.append(config["path_utils"])
+
+from utils_yfinance import download_price
 
 
 class extracts_price:
@@ -12,9 +24,12 @@ class extracts_price:
 
             session = requests.Session(impersonate="chrome")
 
-            df = yf.download(
-                symbol, start=start_date, end=end_date, session=session, group_by="ticker"
-            ).stack(level=0)
+            df = download_price(
+                symbol,
+                start_date,
+                end_date,
+                session,
+            )
 
             response = pd.DataFrame(df.to_records())
 
