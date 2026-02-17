@@ -6,6 +6,6 @@ high: number;
 yearAgoEps: number;
 numberOfAnalysts: number;
 growth: number;
-Ticker: string;
+ticker: string;
 
 };

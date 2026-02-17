@@ -33,25 +33,19 @@ export class RetrievePrixComponent implements OnInit {
 
   scopesItems = signal<scopes[]>([]);
   pricesItems = signal<prices[]>([]);
- 
+  EarningHistItems = signal<price[]>([]);
   
 
   displayedColumns: string[] = [
-    'date', 'ticker', 'open', 'high', 'low', 'close', 'volume'
+    'date', 'ticker', 'open', 'high', 'low', 'close', 'volume', 'adjClose'
   ];
 
   private estimateService = inject(RetrievePrix);
   EarningEstItems = signal<Earning[]>([]);
   displayedColumnses: string[] = [  'estPeriod',
-  'estAvg',
-  'estLow',
-  'estHigh',
-  'estYearAgoEps',
-  'estAnalysts',
-  'estGrowth',
-  'estTicker'];
+  'estAvg','estLow','estHigh','estYearAgoEps','estAnalysts','estGrowth','estTicker'];
   
-  EarningHistItems = signal<price[]>([]);
+ 
 
   private chart?: Chart;
 
@@ -72,14 +66,16 @@ export class RetrievePrixComponent implements OnInit {
       });
   }
 
-  onScopeChange(symbol: string): void {
-  this.prixService.getPriceBySymbol(symbol).subscribe(prices => {
+  onScopeChange(ticker: string): void {
+  this.prixService.getPriceBySymbol(ticker).subscribe(prices => {
+    console.log('Prices API payload:', prices[0]);
     this.pricesItems.set(prices);
     this.createChart(prices);
   });
 
+
   // Earnings table
-  this.estimateService.getEarningEstBySymbol(symbol)
+  this.estimateService.getEarningEstBySymbol(ticker)
     .subscribe(Earning => {
       this.EarningEstItems.set(Earning);
       this.createChart2(Earning);
@@ -88,8 +84,8 @@ export class RetrievePrixComponent implements OnInit {
    
   }
   private createChart(prices: prices[]): void {
-    const labels = prices.map(p => p.Date);
-    const values = prices.map(p => p.Close);
+    const labels = prices.map(p => p.date);
+    const values = prices.map(p => p.close);
 
   
 

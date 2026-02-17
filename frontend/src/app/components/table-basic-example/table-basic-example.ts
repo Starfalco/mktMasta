@@ -37,7 +37,7 @@ export class TableBasicExample {
 
      
       this.dataSource.filterPredicate = (row: Earning, filter: string) => {
-        return row.Ticker.toLowerCase().includes(filter);
+        return row.ticker.toLowerCase().includes(filter);
       };
     });
   }

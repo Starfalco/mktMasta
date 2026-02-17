@@ -36,7 +36,7 @@ export class pricetable {
 
       
       this.dataSource.filterPredicate = (row: price, filter: string) => {
-        return row.Ticker.toLowerCase().includes(filter);
+        return row.ticker.toLowerCase().includes(filter);
      };
     });
   }

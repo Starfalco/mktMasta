@@ -45,6 +45,6 @@ export class RetrieveScopes implements OnInit{
     });
  }
 
-  onScopeChange(symbol: string): void {
-  this.retrieveScopes.getDataBySymbol(symbol).subscribe();
+  onScopeChange(ticker: string): void {
+  this.retrieveScopes.getDataBySymbol(ticker).subscribe();
 }}

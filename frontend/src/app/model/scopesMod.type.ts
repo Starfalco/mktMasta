@@ -1,5 +1,5 @@
 export type scopes = {
-Company: string;
-Symbol: string;
+ticker: string;
+company: string;
 
 };

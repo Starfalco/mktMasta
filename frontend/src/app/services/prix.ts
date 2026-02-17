@@ -18,17 +18,17 @@ export class RetrievePrix {
     
   }
 
-   getPriceBySymbol(symbol: string) {
-    const url = `http://localhost:8000/retrieve/retrieve_price/${symbol}`;
+   getPriceBySymbol(ticker: string) {
+    const url = `http://localhost:8000/retrieve/retrieve_price/${ticker}`;
     return this.http.get<prices[]>(url);
       }
       
-   getEarningEstBySymbol(symbol: string) {
-    const url = `http://localhost:8000/retrieve/earnings_estimate/${symbol}`;
+   getEarningEstBySymbol(ticker: string) {
+    const url = `http://localhost:8000/retrieve/earnings_estimate/${ticker}`;
     return this.http.get<Earning[]>(url);
       }      
-   getEarningHistBySymbol(symbol: string) {
-    const url = `http://localhost:8000/retrieve/earnings_history/${symbol}`;
+   getEarningHistBySymbol(ticker: string) {
+    const url = `http://localhost:8000/retrieve/earnings_history/${ticker}`;
     return this.http.get<price[]>(url);
       }            
       ;

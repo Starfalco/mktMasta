@@ -1,8 +1,8 @@
 <mat-form-field appearance="outline">
   <mat-label>Scope</mat-label>
   <mat-select (selectionChange)="onScopeChange($event.value)">
-    <mat-option *ngFor="let scope of scopesItems()" [value]="scope.Symbol">
-      {{scope.Symbol}} {{ scope.Company}}
+    <mat-option *ngFor="let scope of scopesItems()" [value]="scope.ticker">
+      {{scope.ticker}} {{ scope.company}}
     </mat-option>
   </mat-select>
 </mat-form-field>
@@ -20,37 +20,42 @@
     <caption>My Awesome Data Table</caption>
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef>Date</th>
-      <td mat-cell *matCellDef="let row">{{ row.Date }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.date }}</td>
     </ng-container>
 
     <ng-container matColumnDef="ticker">
       <th mat-header-cell *matHeaderCellDef>Ticker</th>
-      <td mat-cell *matCellDef="let row">{{ row.Ticker }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.ticker }}</td>
     </ng-container>
 
     <ng-container matColumnDef="open">
       <th mat-header-cell *matHeaderCellDef>Open</th>
-      <td mat-cell *matCellDef="let row">{{ row.Open }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.open }}</td>
     </ng-container>
 
     <ng-container matColumnDef="high">
       <th mat-header-cell *matHeaderCellDef>High</th>
-      <td mat-cell *matCellDef="let row">{{ row.High }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.high }}</td>
     </ng-container>
 
     <ng-container matColumnDef="low">
       <th mat-header-cell *matHeaderCellDef>Low</th>
-      <td mat-cell *matCellDef="let row">{{ row.Low }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.low }}</td>
     </ng-container>
 
     <ng-container matColumnDef="close">
       <th mat-header-cell *matHeaderCellDef>Close</th>
-      <td mat-cell *matCellDef="let row">{{ row.Close }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.close }}</td>
     </ng-container>
 
     <ng-container matColumnDef="volume">
       <th mat-header-cell *matHeaderCellDef>Volume</th>
-      <td mat-cell *matCellDef="let row">{{ row.Volume }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.volume }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="adjClose">
+      <th mat-header-cell *matHeaderCellDef>adjClose</th>
+      <td mat-cell *matCellDef="let row">{{ row.adjClose }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -98,7 +103,7 @@
 
   <ng-container matColumnDef="estTicker">
     <th mat-header-cell *matHeaderCellDef>Ticker</th>
-    <td mat-cell *matCellDef="let row">{{ row.Ticker }}</td>
+    <td mat-cell *matCellDef="let row">{{ row.ticker }}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumnses"></tr>
