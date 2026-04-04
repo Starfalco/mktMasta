@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { backendApi } from '../core/service/backendapi';
 import { Observable } from 'rxjs';
-import { modelInitCache } from '../model/modelInitCache.model';
+import { modelInitCache } from '../model/modelinitcache.model';
 
 
 

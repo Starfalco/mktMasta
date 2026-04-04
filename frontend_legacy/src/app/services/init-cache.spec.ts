@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { backendApi } from './backendapi';
+import { InitCache } from './init-cache';
 
-describe('Backendapi', () => {
-  let service: backendApi;
+describe('InitCache', () => {
+  let service: InitCache;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(backendApi);
+    service = TestBed.inject(InitCache);
   });
 
   it('should be created', () => {
