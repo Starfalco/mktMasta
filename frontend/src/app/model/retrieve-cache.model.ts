@@ -1,4 +1,4 @@
-export interface FilterNumericFieldModel {
+export interface RetrieveCacheModel {
     sector: string;
     industry: string;
     ticker: string;
@@ -61,4 +61,4 @@ export interface FilterNumericFieldModel {
     scoring_f2: number;
     surprise_average_industry_bench: number;
     surprise_average_sector_bench: number
-}
+};

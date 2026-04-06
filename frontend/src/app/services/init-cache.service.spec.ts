@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FilterNumericField } from './filter-numeric-field';
+import { InitCacheService } from './init-cache.service';
 
-describe('FilterNumericField', () => {
-  let service: FilterNumericField;
+describe('InitCacheService', () => {
+  let service: InitCacheService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FilterNumericField);
+    service = TestBed.inject(InitCacheService);
   });
 
   it('should be created', () => {
