@@ -1,13 +1,13 @@
-import { TestBed } from '@angular/core/testing';
+import { testBed } from '@angular/core/testing';
 
-import { retrievecache}
+import { retrieveCache }
 
-describe('InitRetrieve', () => {
-  let service: InitRetrieve;
+describe('retrieveCache', () => {
+  let service: retrieveCache;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(InitRetrieve);
+    testBed.configureTestingModule({});
+    service = testBed.inject(retrieveCache);
   });
 
   it('should be created', () => {

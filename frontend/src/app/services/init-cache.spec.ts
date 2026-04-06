@@ -1,14 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import { testBed } from '@angular/core/testing';
 
-import { Initcache } from './init-cache';
-import { init}
+import { initCache } from './init-cache';
+import { init }
 
-describe('InitCache', () => {
+describe('initCache', () => {
   let service: modelInitCache;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(modelInitCachesService);
+    testBed.configureTestingModule({});
+    service = testBed.inject(modelInitCachesService);
   });
 
   it('should be created', () => {
