@@ -8,3 +8,17 @@ airflow/airflow.cfg
 airflow/webserver_config.py
 extracts
 Buy & Hold Port Screener - Multi tasking - 10.03.23.ipynb
+node_modules
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/package.json
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/chunk-YEPWIHIR.js.map
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/chunk-YEPWIHIR.js
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/chunk-5NCBJT6C.js.map
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/chunk-5NCBJT6C.js
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/@angular_router.js
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/@angular_router.js.map
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/@angular_platform-browser.js.map
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/@angular_core.js
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/@angular_core.js.map
+frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/@angular_platform-browser.js
+frontend_legacy/.angular/cache/21.2.6/frontend/.tsbuildinfo
+frontend/angular.json

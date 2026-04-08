@@ -1,14 +1,18 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ConfigService } from '../../services/config-file-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BackendApiService {
-
+export class BackendApi {
+  private config = inject(ConfigService);
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:8000'; // Replace with your base API URL
+
+  private baseUrl(): string {
+    return this.config.backendApi.baseUrl;
+  }
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
