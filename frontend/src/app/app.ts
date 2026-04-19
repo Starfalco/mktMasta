@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Screener } from './components/screener/screener';
 
 @Component({
   selector: 'app-root',
