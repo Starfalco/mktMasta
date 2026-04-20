@@ -11,8 +11,8 @@ export class FilterStringFieldService {
 
   private endpoint = 'filter/filter_string_field';
 
-  createFilterNumericField(filterNumericField: Partial<FilterStringFieldModel>): Observable<FilterStringFieldModel> {
-    return this.api.post<FilterStringFieldModel>(this.endpoint, filterNumericField);
+  createFilterStringField(filterStringField: Partial<FilterStringFieldModel>): Observable<FilterStringFieldModel> {
+    return this.api.post<FilterStringFieldModel>(this.endpoint, filterStringField);
   }
 
 }
