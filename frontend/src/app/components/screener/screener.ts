@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-import { RetrieveCachesService } from '../../services/retrieve-cache.service';
+import {Component} from '@angular/core';
 import { RetrieveCacheModel } from '../../model/retrieve-cache.model';
+import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
-import { RouterLink } from '@angular/router';
+import { RetrieveCachesService } from '../../services/retrieve-cache.service';
+import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common'; // required for *ngFor, *ngIf
 
 @Component({
   selector: 'app-screener',
+   standalone: true,
   imports: [
-    MatTableModule,RouterLink],
+    CommonModule,
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule],
   templateUrl: './screener.html',
   styleUrl: './screener.css',
 })

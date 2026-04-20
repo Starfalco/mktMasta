@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BackendApiService } from '../core/service/backend-api.service';
+import { BackendApi } from '../core/service/backend-api.service';
 import { Observable } from 'rxjs';
 import { RetrieveCacheModel } from '../model/retrieve-cache.model';
 
@@ -7,7 +7,7 @@ import { RetrieveCacheModel } from '../model/retrieve-cache.model';
   providedIn: 'root'
 })
 export class RetrieveCachesService {
-  private api = inject(BackendApiService);
+  private api = inject(BackendApi);
   private endpoint = 'cache/retrieve_cache';
 
   getRetrieveCache(): Observable<RetrieveCacheModel[]> {
