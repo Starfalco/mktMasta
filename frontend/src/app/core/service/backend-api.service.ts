@@ -6,7 +6,7 @@ import { ConfigService } from '../../services/config-file-service';
 @Injectable({
   providedIn: 'root'
 })
-export class BackendApi {
+export class BackendApiService {
   private config = inject(ConfigService);
   private http = inject(HttpClient);
 
