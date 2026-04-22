@@ -17,14 +17,16 @@ import { InitCacheModel } from '../model/init-cache.model';
 // }
 //   }
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class RetrieveCachesService {
-    private api = inject(BackendApiService);
-    private endpoint = 'cache/init_cache';
-  
-    getRetrieveCache(): Observable<InitCacheModel[]> {
-      return this.api.get<InitCacheModel[]>(this.endpoint);
-    }
-  }
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class InitCacheService {
+//   private api = inject(BackendApiService);
+
+//   private endpoint = 'cache/init_cache';
+
+//   initCache() {
+//   const endpoint = this.config.backendApi.endpointInitCache;
+//   return this.post(endpoint, {});
+// }
+//   }

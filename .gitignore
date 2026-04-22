@@ -22,3 +22,15 @@ frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/@angular_core.js.map
 frontend_legacy/.angular/cache/21.2.6/frontend/vite/deps/@angular_platform-browser.js
 frontend_legacy/.angular/cache/21.2.6/frontend/.tsbuildinfo
 frontend/angular.json
+extracts/earnings_estimate.parquet
+extracts/earnings_history.parquet
+extracts/info.parquet
+extracts/price.parquet
+extracts/earnings_estimate.parquet
+extracts/earnings_history.parquet
+extracts/info.parquet
+extracts/price.parquet
+metadata/max_drawn_down.parquet
+metadata/peg_benchmark.parquet
+metadata/volatility.parquet
+metadata/peg.parquet
