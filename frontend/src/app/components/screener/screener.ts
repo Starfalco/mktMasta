@@ -6,7 +6,7 @@ import { RetrieveCachesService } from '../../services/retrieve-cache.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common'; // required for *ngFor, *ngIf
-import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-screener',
@@ -15,8 +15,7 @@ import { RouterLink } from '@angular/router';
     CommonModule,
     MatTableModule,
     MatInputModule,
-    MatFormFieldModule,
-    RouterLink],
+    MatFormFieldModule],
   templateUrl: './screener.html',
   styleUrl: './screener.css',
 })
@@ -86,14 +85,15 @@ export class Screener {
   ];
 
   dataSource = new MatTableDataSource<RetrieveCacheModel>();
-  constructor(private service: RetrieveCachesService) {
-    this.service.getRetrieveCache().subscribe({
-      next: data => {
-        this.dataSource.data = data;
-      },
-      error: err => {
-        console.error(err);
-      }
-    });
-  }
+constructor(private service: RetrieveCachesService) {
+  this.service.getRetrieveCache().subscribe({
+    next: data => {
+      console.log('DATA:', data);
+      this.dataSource.data = data;
+    },
+    error: err => {
+      console.error('ERROR:', err);
+    }
+  });
+}
 }

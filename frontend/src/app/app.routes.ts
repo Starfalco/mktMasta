@@ -1,9 +1,17 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-    {
-        path: 'screener',
+  {
+    path: 'home',
+    pathMatch: 'full',
         loadComponent: () =>
-            import('./components/screener/screener')
-                .then(m => m.Screener)
-    }]
+      import('./main/main')
+        .then(m => m.Main)
+  },
+  {
+    path: 'screener',
+    loadComponent: () =>
+      import('./components/screener/screener')
+        .then(m => m.Screener)
+  }
+];

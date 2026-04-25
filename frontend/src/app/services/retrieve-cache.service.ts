@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { BackendApiService } from '../core/service/backend-api.service';
-import { BackendApiService } from '../core/service/backend-api.service';
 import { Observable } from 'rxjs';
 import { RetrieveCacheModel } from '../model/retrieve-cache.model';
 import { HttpClient } from '@angular/common/http';
