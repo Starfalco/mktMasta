@@ -3,16 +3,16 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ConfigService } from '../../services/config-file-service';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class BackendApiService {
   private config = inject(ConfigService);
   private http = inject(HttpClient);
-
-  private baseUrl(): string {
-    return this.config.backendApi.baseUrl;
-  }
+  // private baseUrl = 'http://localhost:8000';
+  private baseUrl = this.config.getBaseUrl();
+  
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -27,6 +27,10 @@ export class BackendApiService {
     });
   }
 
+ 
+  // get<T>(endpoint: string): Observable<T> {
+  //   return this.http.get<T>(`${this.baseUrl}/${endpoint}`);
+  // } 
   post<T>(endpoint: string, body: any): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, {
       headers: this.getHeaders(),

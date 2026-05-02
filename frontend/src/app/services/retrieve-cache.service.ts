@@ -8,23 +8,19 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RetrieveCachesService {
-//   private api = inject(BackendApiService);
-//   private endpoint = 'cache/retrieve_cache';
+  private api = inject(BackendApiService);
+  private endpoint = 'cache/retrieve_cache';
 
-//   getRetrieveCache(): Observable<RetrieveCacheModel[]> {
-//     return this.api.get<RetrieveCacheModel[]>(this.endpoint);
-//   }
-
-  http = inject(HttpClient);
-
-  getRetrieveCache() {
-    const url = `http://localhost:8000/cache/retrieve_cache`
-
-    return this.http.get<Array<RetrieveCacheModel>>(url);
-    
+  getRetrieveCache(): Observable<RetrieveCacheModel[]> {
+    return this.api.get<RetrieveCacheModel[]>(this.endpoint);
   }
 
+  // http = inject(HttpClient);
 
+  // getRetrieveCache() {
+  //   const url = `http://localhost:8000/cache/retrieve_cache`
 
-
+  //   return this.http.get<Array<RetrieveCacheModel>>(url);
+    
+  // }
 }
