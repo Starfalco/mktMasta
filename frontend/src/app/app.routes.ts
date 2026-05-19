@@ -13,5 +13,17 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/screener/screener')
         .then(m => m.Screener)
+  },
+  {
+    path: 'name-editor',
+    loadComponent: () =>
+      import('./components/name-editor.component/name-editor.component')
+        .then(m => m.NameEditorComponent)
+  },
+  {
+    path: 'profile-editor',
+    loadComponent: () =>
+      import('./components/profile-editor.component/profile-editor.component')
+        .then(m => m.ProfileEditorComponent)
   }
 ];

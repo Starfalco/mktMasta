@@ -6,6 +6,7 @@ import { RetrieveCachesService } from '../../services/retrieve-cache.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common'; // required for *ngFor, *ngIf
+import { NameEditorComponent } from '../name-editor.component/name-editor.component';
 
 
 @Component({
@@ -15,7 +16,8 @@ import { CommonModule } from '@angular/common'; // required for *ngFor, *ngIf
     CommonModule,
     MatTableModule,
     MatInputModule,
-    MatFormFieldModule],
+    MatFormFieldModule,
+    NameEditorComponent],
   templateUrl: './screener.html',
   styleUrl: './screener.css',
 })
