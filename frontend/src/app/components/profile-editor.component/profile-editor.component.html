@@ -1,10 +1,10 @@
-<form [formGroup]="profileForm">
+<form id="Form" [formGroup]="profileForm">
   <label for="first-name">First Name: </label>
   <input id="first-name" type="text" formControlName="firstName" />
   <label for="last-name">Last Name: </label>
   <input id="last-name" type="text" formControlName="lastName" />
 </form>
-<div formGroupName="address">
+<div id="formGroup" formGroupName="address">
   <h2>Address</h2>
   <label for="street">Street: </label>
   <input id="street" type="text" formControlName="street" />

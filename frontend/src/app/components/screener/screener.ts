@@ -7,6 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common'; // required for *ngFor, *ngIf
 import { NameEditorComponent } from '../name-editor.component/name-editor.component';
+import { ProfileEditorComponent } from '../profile-editor.component/profile-editor.component';
+import { FilterOverlay } from '../overlay/overlay-components';
+import { inject } from '@angular/core';
+import { Overlay } from '@angular/cdk/overlay';
+import { CdkPortal, PortalModule } from '@angular/cdk/portal';
+import { viewChild } from '@angular/core';
 
 
 @Component({
@@ -17,10 +23,15 @@ import { NameEditorComponent } from '../name-editor.component/name-editor.compon
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    NameEditorComponent],
+    NameEditorComponent,
+    ProfileEditorComponent,
+    FilterOverlay,
+    PortalModule],
   templateUrl: './screener.html',
   styleUrl: './screener.css',
 })
+
+
 export class Screener {
   displayedColumns: string[] = ['sector',
     'industry',
