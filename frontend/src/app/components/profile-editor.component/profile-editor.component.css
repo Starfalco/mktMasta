@@ -1,9 +1,11 @@
 #Form {
-background-color: rgb(8, 156, 65);
+background-color: rgb(74, 83, 78);
+border-color: blue;
+border-style: solid;
 width: 300px;
 }
 
-#formGroup{
-background-color: rgb(22, 167, 63);
-width: 300px;
+h2{
+background-color: blue;
+color:azure;
 }
