@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NameEditorComponent } from './name-editor.component';
+import { FilterStringField } from './filter-string-field';
 
-describe('NameEditorComponent', () => {
-  let component: NameEditorComponent;
-  let fixture: ComponentFixture<NameEditorComponent>;
+describe('FilterStringField', () => {
+  let component: FilterStringField;
+  let fixture: ComponentFixture<FilterStringField>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NameEditorComponent],
+      imports: [FilterStringField],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NameEditorComponent);
+    fixture = TestBed.createComponent(FilterStringField);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -15,7 +15,7 @@ list-style: none;
 border-top: solid, black, 50000px;
 }
 
-#Home, #screener, #name-editor, #profile-editor {
+#Home, #screener{
    display: flex;
    text-decoration: none;
    color: aliceblue;

@@ -6,7 +6,6 @@ import { RetrieveCachesService } from '../../services/retrieve-cache.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common'; // required for *ngFor, *ngIf
-import { NameEditorComponent } from '../name-editor.component/name-editor.component';
 import { ProfileEditorComponent } from '../profile-editor.component/profile-editor.component';
 import { FilterOverlay } from '../overlay/overlay-components';
 import { inject } from '@angular/core';
@@ -23,7 +22,6 @@ import { viewChild } from '@angular/core';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    NameEditorComponent,
     ProfileEditorComponent,
     FilterOverlay,
     PortalModule],

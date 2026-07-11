@@ -22,24 +22,24 @@
     <input id="zip" type="text" formControlName="zip" />
   </div>
 
-  <div formArrayName="aliases">
+  <!-- <div formArrayName="aliases">
     <h2>Aliases</h2>
 
     <button type="button" (click)="addAlias()">
       + Add another alias
-    </button>
-
+    </button> -->
+<!-- 
     @for (alias of aliases.controls; track $index; let i = $index) {
       <div>
         <label for="alias-{{ i }}">Alias:</label>
         <input id="alias-{{ i }}" type="text" [formControlName]="i" />
       </div>
     }
-  </div>
+  </div> -->
 
-  <button type="button" (click)="updateProfile()">
+  <!-- <button type="button" (click)="updateProfile()">
     Update Profile
-  </button>
+  </button> -->
 
   <p>Form Status: {{ profileForm.status }}</p>
 

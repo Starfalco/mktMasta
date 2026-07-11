@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { BackendApiService } from '../core/service/backend-api.service';
 import { Observable } from 'rxjs';
 import { FilterStringFieldModel } from '../model/filter-string-field.model';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,8 @@ export class FilterStringFieldService {
 
   private endpoint = 'filter/filter_string_field';
 
-  createFilterStringField(filterStringField: Partial<FilterStringFieldModel>): Observable<FilterStringFieldModel> {
-    return this.api.post<FilterStringFieldModel>(this.endpoint, filterStringField);
+  createFilterStringField(params?: HttpParams): Observable<FilterStringFieldModel[]> {
+    return this.api.post<FilterStringFieldModel[]>(this.endpoint, null, params);
   }
 
 }

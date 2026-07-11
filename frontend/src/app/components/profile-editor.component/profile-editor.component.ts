@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators, FormArray} from '@angular/forms';
+import {FilterStringField} from '../filter-string-field/filter-string-field';
+import {FilterStringFieldService} from '../../services/filter-string-field.service';
 
 @Component({
   selector: 'app-profile-editor',
@@ -8,6 +10,7 @@ import {FormBuilder, ReactiveFormsModule, Validators, FormArray} from '@angular/
   imports: [ReactiveFormsModule],
 })
 export class ProfileEditorComponent {
+  private filterStringField = inject(FilterStringFieldService);
   private formBuilder = inject(FormBuilder);
   profileForm = this.formBuilder.group({
     firstName: ['', Validators.required],
@@ -28,10 +31,13 @@ export class ProfileEditorComponent {
       },
     });
   };
-  get aliases() {
-    return this.profileForm.get('aliases') as FormArray;
-  };
-  addAlias() {
-    this.aliases.push(this.formBuilder.control(''));
-  };
+  // updateProfile() {
+  //   this.filterStringField.runFilterStringField();
+  // };
+  // get aliases() {
+  //   return this.profileForm.get('aliases') as FormArray;
+  // };
+  // addAlias() {
+  //   this.aliases.push(this.formBuilder.control(''));
+  // };
 }

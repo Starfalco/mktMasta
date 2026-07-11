@@ -31,9 +31,10 @@ export class BackendApiService {
   // get<T>(endpoint: string): Observable<T> {
   //   return this.http.get<T>(`${this.baseUrl}/${endpoint}`);
   // } 
-  post<T>(endpoint: string, body: any): Observable<T> {
+  post<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, {
       headers: this.getHeaders(),
+      params,
       withCredentials: true
     });
   }

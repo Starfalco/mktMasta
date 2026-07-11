@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NameEditorComponent } from '../name-editor.component/name-editor.component';
 import { ProfileEditorComponent } from '../profile-editor.component/profile-editor.component';
 import { Overlay } from '@angular/cdk/overlay';
 import { CdkPortal, PortalModule, } from '@angular/cdk/portal';
@@ -11,7 +10,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-overlay-components',
   imports: [  
-    NameEditorComponent,
     ProfileEditorComponent,
     PortalModule,
   CdkOverlayOrigin],

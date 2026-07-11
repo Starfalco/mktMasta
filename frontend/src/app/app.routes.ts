@@ -15,15 +15,9 @@ export const routes: Routes = [
         .then(m => m.Screener)
   },
   {
-    path: 'name-editor',
+    path: 'filter-string-field',
     loadComponent: () =>
-      import('./components/name-editor.component/name-editor.component')
-        .then(m => m.NameEditorComponent)
+      import('./components/filter-string-field/filter-string-field')
+        .then(m => m.FilterStringField)
   },
-  {
-    path: 'profile-editor',
-    loadComponent: () =>
-      import('./components/profile-editor.component/profile-editor.component')
-        .then(m => m.ProfileEditorComponent)
-  }
 ];
