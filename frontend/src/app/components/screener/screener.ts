@@ -8,11 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common'; // required for *ngFor, *ngIf
 import { ProfileEditorComponent } from '../profile-editor.component/profile-editor.component';
 import { FilterOverlay } from '../overlay/overlay-components';
-import { inject } from '@angular/core';
-import { Overlay } from '@angular/cdk/overlay';
-import { CdkPortal, PortalModule } from '@angular/cdk/portal';
-import { viewChild } from '@angular/core';
-
+import { PortalModule } from '@angular/cdk/portal';
+import { screenerColumns, type ScreenerColumn } from '../../model/screener.model';
 
 @Component({
   selector: 'app-screener',
@@ -29,82 +26,24 @@ import { viewChild } from '@angular/core';
   styleUrl: './screener.css',
 })
 
-
 export class Screener {
-  displayedColumns: string[] = ['sector',
-    'industry',
-    'ticker',
-    'earnings_f0',
-    'earnings_f1',
-    'earnings_f2',
-    'growth_f1',
-    'growth_f2',
-    'pe_f0',
-    'pe_f1',
-    'pe_f2',
-    'peg_f1',
-    'peg_f2',
-    'surprise_average',
-    'nb_analysts_f1',
-    'nb_analysts_f2',
-    'high_to_low_eps_f1',
-    'high_to_low_eps_f2',
-    'fiscal_month',
-    'volatility',
-    'max_drawn_down',
-    'occurrence',
-    'max_price',
-    'earnings_f0_industry_bench',
-    'earnings_f1_industry_bench',
-    'earnings_f2_industry_bench',
-    'earnings_f0_sector_bench',
-    'earnings_f1_sector_bench',
-    'earnings_f2_sector_bench',
-    'earnings_f0_delta_industry',
-    'earnings_f1_delta_industry',
-    'earnings_f2_delta_industry',
-    'earnings_f0_delta_sector',
-    'earnings_f1_delta_sector',
-    'earnings_f2_delta_sector',
-    'growth_f1_industry_bench',
-    'growth_f2_industry_bench',
-    'growth_f1_sector_bench',
-    'growth_f2_sector_bench',
-    'growth_f1_delta_industry',
-    'growth_f2_delta_industry',
-    'growth_f1_delta_sector',
-    'growth_f2_delta_sector',
-    'pe_f0_industry_bench',
-    'pe_f1_industry_bench',
-    'pe_f2_industry_bench',
-    'pe_f0_sector_bench',
-    'pe_f1_sector_bench',
-    'pe_f2_sector_bench',
-    'pe_f0_delta_industry',
-    'pe_f1_delta_industry',
-    'pe_f2_delta_industry',
-    'pe_f0_delta_sector',
-    'pe_f1_delta_sector',
-    'pe_f2_delta_sector',
-    'pe_f1_vs_f0',
-    'pe_f2_vs_f1',
-    'scoring_f0',
-    'scoring_f1',
-    'scoring_f2',
-    'surprise_average_industry_bench',
-    'surprise_average_sector_bench'
-  ];
+  readonly displayedColumns: ScreenerColumn[] = screenerColumns;
+
+  get displayedColumnKeys(): Array<keyof RetrieveCacheModel> {
+    return this.displayedColumns.map(column => column.key);
+  }
 
   dataSource = new MatTableDataSource<RetrieveCacheModel>();
-constructor(private service: RetrieveCachesService) {
-  this.service.getRetrieveCache().subscribe({
-    next: data => {
-      console.log('DATA:', data);
-      this.dataSource.data = data;
-    },
-    error: err => {
-      console.error('ERROR:', err);
-    }
-  });
-}
+
+  constructor(private service: RetrieveCachesService) {
+    this.service.getRetrieveCache().subscribe({
+      next: data => {
+        console.log('DATA:', data);
+        this.dataSource.data = data;
+      },
+      error: err => {
+        console.error('ERROR:', err);
+      }
+    });
+  }
 }
