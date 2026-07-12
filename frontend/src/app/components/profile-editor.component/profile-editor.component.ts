@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators, FormArray} from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {FilterStringField} from '../filter-string-field/filter-string-field';
-import {FilterStringFieldService} from '../../services/filter-string-field.service';
 
 @Component({
   selector: 'app-profile-editor',
@@ -10,34 +9,17 @@ import {FilterStringFieldService} from '../../services/filter-string-field.servi
   imports: [ReactiveFormsModule],
 })
 export class ProfileEditorComponent {
-  private filterStringField = inject(FilterStringFieldService);
+  private filterStringField = inject(FilterStringField);
   private formBuilder = inject(FormBuilder);
   profileForm = this.formBuilder.group({
-    firstName: ['', Validators.required],
-    lastName: [''],
-    address: this.formBuilder.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: [''],
+    filter: this.formBuilder.group({
+      field: [''],
+      contains: [''],
     }),
     aliases: this.formBuilder.array([this.formBuilder.control('')]),
   });
   updateProfile() {
-    this.profileForm.patchValue({
-      firstName: 'Nancy',
-      address: {
-        street: '123 Drew Street',
-      },
-    });
+    const { field, contains } = this.profileForm.get('filter')?.value || {};
+    this.filterStringField.runFilterStringField(field || undefined, contains || undefined);
   };
-  // updateProfile() {
-  //   this.filterStringField.runFilterStringField();
-  // };
-  // get aliases() {
-  //   return this.profileForm.get('aliases') as FormArray;
-  // };
-  // addAlias() {
-  //   this.aliases.push(this.formBuilder.control(''));
-  // };
 }
