@@ -5,12 +5,12 @@ import { screenerColumns, type ScreenerColumn } from '../../model/screener.model
 import type { RetrieveCacheModel } from '../../model/retrieve-cache.model';
 
 @Component({
-  selector: 'app-profile-editor',
-  templateUrl: './profile-editor.component.html',
-  styleUrls: ['./profile-editor.component.css'],
+  selector: 'app-filter-string-field-form',
+  templateUrl: './filter-string-field-form.html',
+  styleUrls: ['./filter-string-field-form.css'],
   imports: [ReactiveFormsModule],
 })
-export class ProfileEditorComponent {
+export class FilterStringFieldFormComponent {
   readonly displayedColumns: ScreenerColumn[] = screenerColumns;
   private filterStringField = inject(FilterStringField);
   private formBuilder = inject(FormBuilder);

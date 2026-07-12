@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProfileEditorComponent } from '../profile-editor.component/profile-editor.component';
+import { FilterStringFieldFormComponent } from '../filter-string-field-form/filter-string-field-form';
 import { Overlay } from '@angular/cdk/overlay';
 import { CdkPortal, PortalModule, } from '@angular/cdk/portal';
 import { viewChild, DestroyRef,inject  } from '@angular/core';
@@ -10,7 +10,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-overlay-components',
   imports: [  
-    ProfileEditorComponent,
+    FilterStringFieldFormComponent,
     PortalModule,
   CdkOverlayOrigin],
   templateUrl: './overlay-components.html',

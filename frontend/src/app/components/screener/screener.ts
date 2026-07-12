@@ -6,7 +6,7 @@ import { RetrieveCachesService } from '../../services/retrieve-cache.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common'; // required for *ngFor, *ngIf
-import { ProfileEditorComponent } from '../profile-editor.component/profile-editor.component';
+import { FilterStringFieldFormComponent } from '../filter-string-field-form/filter-string-field-form';
 import { FilterOverlay } from '../overlay/overlay-components';
 import { PortalModule } from '@angular/cdk/portal';
 import { screenerColumns, type ScreenerColumn } from '../../model/screener.model';
@@ -19,7 +19,7 @@ import { screenerColumns, type ScreenerColumn } from '../../model/screener.model
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    ProfileEditorComponent,
+    FilterStringFieldFormComponent,
     FilterOverlay,
     PortalModule],
   templateUrl: './screener.html',
