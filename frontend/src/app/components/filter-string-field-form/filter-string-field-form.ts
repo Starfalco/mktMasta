@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
-import {FilterStringField} from '../filter-string-field/filter-string-field';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FilterStringField } from '../filter-string-field/filter-string-field';
 import { screenerColumns, type ScreenerColumn } from '../../model/screener.model';
 import type { RetrieveCacheModel } from '../../model/retrieve-cache.model';
 
@@ -41,5 +41,7 @@ export class FilterStringFieldFormComponent {
     const fieldKey = this.resolveFieldKey(fieldValue);
 
     this.filterStringField.runFilterStringField(fieldKey ?? '', containsValue ?? '');
+
+    window.location.reload();
   }
 }
