@@ -1,8 +1,9 @@
 #Form {
-background-color: rgb(74, 83, 78);
+background-color: rgb(213, 212, 225);
 border-color: blue;
 border-style: solid;
 width: 300px;
+padding-left: 10px;
 }
 
 h2{

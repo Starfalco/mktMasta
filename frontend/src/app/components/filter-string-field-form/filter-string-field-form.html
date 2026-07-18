@@ -3,18 +3,21 @@
   <div id="formGroup" formGroupName="filter">
     <h2>FILTER</h2>
 
-    <label for="field">Field:</label>
+    <label for="field">Field : </label>
     <input id="field" type="text" formControlName="field" />
 
-    <label for="contains">Contains:</label>
+    <br>
+
+    <label for="contains">Contains : </label>
     <input id="contains" type="text" formControlName="contains" />
 
+  </div>
+
+  <p>Form Status: {{ profileForm.status }}
     <button type="button" (click)="updateProfile()">
       Apply
     </button>
-  </div>
-
-  <p>Form Status: {{ profileForm.status }}</p>
+  </p>
 
 </form>
 <!-- NExt steps : liste deroulante pour collumn name, and min max range based of value type num or text  -->
