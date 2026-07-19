@@ -1,33 +1,28 @@
+<app-overlay-components />
+<app-reset-filters />
 
 
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+  <!-- Dynamic column definitions -->
+  <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column.key">
 
-<app-overlay-components/>
+    <!-- Header -->
+    <th mat-header-cell *matHeaderCellDef>
+      {{ column.label }}
+    </th>
 
+    <!-- Cell -->
+    <td mat-cell *matCellDef="let element">
+      {{ element[column.key] ?? '' }}
+    </td>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  </ng-container>
 
-    <!-- Dynamic column definitions -->
-    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column.key">
-      
-      <!-- Header -->
-      <th mat-header-cell *matHeaderCellDef>
-        {{ column.label }}
-      </th>
+  <!-- Header row -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumnKeys"></tr>
 
-      <!-- Cell -->
-      <td mat-cell *matCellDef="let element">
-        {{ element[column.key] ?? '' }}
-      </td>
+  <!-- Data rows -->
+  <tr mat-row *matRowDef="let row; columns: displayedColumnKeys;"></tr>
 
-    </ng-container>
-
-    <!-- Header row -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumnKeys"></tr>
-
-    <!-- Data rows -->
-    <tr mat-row *matRowDef="let row; columns: displayedColumnKeys;"></tr>
-
-  </table>
-
-
+</table>

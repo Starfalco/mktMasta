@@ -2,17 +2,14 @@ import { Component } from '@angular/core';
 import { FilterStringFieldFormComponent } from '../filter-string-field-form/filter-string-field-form';
 import { Overlay } from '@angular/cdk/overlay';
 import { CdkPortal, PortalModule, } from '@angular/cdk/portal';
-import { viewChild, DestroyRef,inject  } from '@angular/core';
-import { CdkOverlayOrigin, OverlayModule } from '@angular/cdk/overlay';
-import { OverlayConfig } from '@angular/cdk/overlay';
+import { viewChild, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-overlay-components',
-  imports: [  
+  imports: [
     FilterStringFieldFormComponent,
-    PortalModule,
-  CdkOverlayOrigin],
+    PortalModule,],
   templateUrl: './overlay-components.html',
   styleUrl: './overlay-components.css',
 })
