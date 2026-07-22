@@ -10,8 +10,14 @@ import {InitCacheService} from "../../services/init-cache.service";
 export class ResetFilters {
   constructor(private initCacheService: InitCacheService) {}
 
-  openModal() {
+  async openModal() {
     this.initCacheService.initCache().subscribe();
+    await sleep(3000); // Wait for 3 seconds before reloading the page
     window.location.reload();
   }
+}
+
+
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

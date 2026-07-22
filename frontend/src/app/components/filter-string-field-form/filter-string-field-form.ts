@@ -34,14 +34,18 @@ export class FilterStringFieldFormComponent {
     )?.key;
   }
 
-  updateProfile() {
+  async updateProfile() {
     const filterGroup = this.profileForm.get('filter');
     const fieldValue = filterGroup?.get('field')?.value as string | null;
     const containsValue = filterGroup?.get('contains')?.value as string | null;
     const fieldKey = this.resolveFieldKey(fieldValue);
 
     this.filterStringField.runFilterStringField(fieldKey ?? '', containsValue ?? '');
-
+    await sleep(3000); // Wait for 3 seconds before reloading the page
     window.location.reload();
   }
+}
+
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
