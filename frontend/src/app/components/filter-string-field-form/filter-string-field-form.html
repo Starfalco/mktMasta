@@ -6,8 +6,19 @@
 
     <br>
 
-    <label for="contains">Contains : </label>
-    <input id="contains" type="text" formControlName="contains" />
+<mat-form-field>
+  <mat-label>Contains</mat-label>
+
+  <mat-select formControlName="contains">
+    <mat-option
+      *ngFor="let option of containsOptions"
+      [value]="option">
+
+      {{ option }}
+
+    </mat-option>
+  </mat-select>
+</mat-form-field>
     
   </div>
 
