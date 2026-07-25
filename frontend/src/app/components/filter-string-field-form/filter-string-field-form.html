@@ -1,21 +1,20 @@
 <form id="Form" [formGroup]="profileForm">
 
-  <div id="formGroup" formGroupName="filter">
-    <h2>FILTER</h2>
-
-    <label for="field">Field : </label>
-    <input id="field" type="text" formControlName="field" />
+  <div formGroupName="filter">
+    <app-dropdown formControlName="field"></app-dropdown>
+ 
 
     <br>
 
     <label for="contains">Contains : </label>
     <input id="contains" type="text" formControlName="contains" />
-
+    
   </div>
 
   <p>Form Status: {{ profileForm.status }}
     <button type="button" (click)="updateProfile()">
       Apply
+      
     </button>
   </p>
 

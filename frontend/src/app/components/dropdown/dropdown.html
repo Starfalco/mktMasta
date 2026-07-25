@@ -1,0 +1,18 @@
+<mat-form-field appearance="outline">
+  <mat-label>Field</mat-label>
+
+  <mat-select
+    [value]="value"
+    [disabled]="disabled"
+    (selectionChange)="valueChanged($event.value)">
+
+    <mat-option
+      *ngFor="let option of fieldOptions"
+      [value]="option.value">
+
+      {{ option.label }}
+
+    </mat-option>
+
+  </mat-select>
+</mat-form-field>

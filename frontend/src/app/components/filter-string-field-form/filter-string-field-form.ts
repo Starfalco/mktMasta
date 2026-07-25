@@ -3,12 +3,13 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FilterStringField } from '../filter-string-field/filter-string-field';
 import { screenerColumns, type ScreenerColumn } from '../../model/screener.model';
 import type { RetrieveCacheModel } from '../../model/retrieve-cache.model';
+import { DropdownComponent } from '../dropdown/dropdown';
 
 @Component({
   selector: 'app-filter-string-field-form',
   templateUrl: './filter-string-field-form.html',
   styleUrls: ['./filter-string-field-form.css'],
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DropdownComponent],
 })
 export class FilterStringFieldFormComponent {
   readonly displayedColumns: ScreenerColumn[] = screenerColumns;
