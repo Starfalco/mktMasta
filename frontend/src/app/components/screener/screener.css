@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+:host > app-overlay-components,
+:host > app-reset-filters {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+table[mat-table],
+.mat-table,
+.mat-mdc-table {
+  width: 100%;
+  background: #ffffff;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.mat-mdc-header-row,
+.mat-header-row {
+  background: linear-gradient(90deg, rgba(27, 94, 32, 0.06) 0%, rgba(21, 101, 192, 0.06) 100%);
+}
+
+.mat-mdc-header-cell,
+.mat-header-cell {
+  padding: 14px 16px;
+  color: #1b5e20;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mat-mdc-cell,
+.mat-cell {
+  padding: 14px 16px;
+  color: #263238;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.mat-mdc-row:hover,
+.mat-row:hover {
+  background: rgba(21, 101, 192, 0.03);
+}
+
+.mat-mdc-row:last-child .mat-mdc-cell,
+.mat-row:last-child .mat-cell {
+  border-bottom: none;
+}
