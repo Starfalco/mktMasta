@@ -17,6 +17,8 @@ from .filter_numeric_field import filter_numeric_field_controller
 from .sort_by_fields import sort_by_fields_controller
 from .filter_field_unique_values import filter_field_unique_values_controller
 from .filter_string_field import filter_string_field_controller
+from .hide_default_field import hide_default_field_controller
+from .hide_visible_field import hide_visible_field_controller
 import json
 
 config_path = "backend/src/config.json"
@@ -52,3 +54,5 @@ app.include_router(filter_numeric_field_controller.router)
 app.include_router(sort_by_fields_controller.router)
 app.include_router(filter_field_unique_values_controller.router)
 app.include_router(filter_string_field_controller.router)
+app.include_router(hide_default_field_controller.router)
+app.include_router(hide_visible_field_controller.router)
