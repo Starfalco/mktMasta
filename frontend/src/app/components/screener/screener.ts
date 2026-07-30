@@ -10,6 +10,8 @@ import { FilterOverlay } from '../overlay/overlay-components';
 import { ResetFilters } from "../reset-filters/reset-filters";
 import { PortalModule } from '@angular/cdk/portal';
 import { screenerColumns, type ScreenerColumn } from '../../model/screener.model';
+import { SortOverlay } from "../sort-overlay/sort-overlay";
+
 
 @Component({
   selector: 'app-screener',
@@ -21,7 +23,9 @@ import { screenerColumns, type ScreenerColumn } from '../../model/screener.model
     MatFormFieldModule,
     FilterOverlay,
     ResetFilters,
-    PortalModule],
+    PortalModule,
+    SortOverlay
+],
   templateUrl: './screener.html',
   styleUrl: './screener.css',
 })

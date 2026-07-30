@@ -12,7 +12,7 @@ export class ResetFilters {
 
   async openModal() {
     this.initCacheService.initCache().subscribe();
-    await sleep(3000); // Wait for 3 seconds before reloading the page
+    await sleep(1000); // Wait for 1 second before reloading the page
     window.location.reload();
   }
 }

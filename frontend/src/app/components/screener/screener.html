@@ -1,7 +1,8 @@
+<header class="screener-header">
 <app-overlay-components />
 <app-reset-filters />
-
-
+<app-sort-overlay/>
+</header>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!-- Dynamic column definitions -->
@@ -13,7 +14,7 @@
     </th>
 
     <!-- Cell -->
-    <td mat-cell *matCellDef="let element">
+    <td mat-cell *matCellDef="let element ">
       {{ element[column.key] ?? '' }}
     </td>
 
