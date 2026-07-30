@@ -81,7 +81,7 @@ class Max_Drawn_Down(Metadata):
         except:
             all_data = pd.DataFrame(self.results)
             # write_deltalake(self.output_path, all_data, mode='overwrite')
-        all_data.to_parquet(self.output_path)
+        all_data.to_parquet(self.output_path,engine="pyarrow")
 
 
 class Volatility(Metadata):
@@ -119,7 +119,7 @@ class Volatility(Metadata):
         except:
             all_data = pd.DataFrame(self.results)
             # write_deltalake(self.output_path, all_data, mode='overwrite')
-        all_data.to_parquet(self.output_path)
+        all_data.to_parquet(self.output_path,engine="pyarrow")
 
 
 class peg(Metadata):
@@ -154,7 +154,7 @@ class peg(Metadata):
         except:
             all_data = pd.DataFrame(self.results)
             # write_deltalake(self.output_path, all_data, mode='overwrite')
-        all_data.to_parquet(self.output_path)
+        all_data.to_parquet(self.output_path,engine="pyarrow")
 
 
 class peg_benchmark(Metadata):
@@ -189,4 +189,4 @@ class peg_benchmark(Metadata):
         except:
             all_data = pd.DataFrame(self.results)
             # write_deltalake(self.output_path, all_data, mode='overwrite')
-        all_data.reset_index(drop=True).to_parquet(self.output_path)
+        all_data.to_parquet(self.output_path,engine="pyarrow")

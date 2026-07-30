@@ -15,4 +15,4 @@ class init_cache:
 
     def get_init_cache(self):
         df = retrieve_peg_benchmark(None)
-        df.drop("level_0",axis="columns").to_parquet(self.output_path)
+        df.drop("level_0",axis="columns").to_parquet(self.output_path,engine="pyarrow")

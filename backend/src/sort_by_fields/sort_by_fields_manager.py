@@ -29,6 +29,6 @@ class sort_by_fields:
 
         df.sort_values(by=fields, ascending=ascending_sort, inplace=True)
 
-        df.to_parquet(self.output_path)
+        df.to_parquet(self.output_path,engine="pyarrow")
 
         return df

@@ -65,7 +65,7 @@ class Prices(Extract):
             self.starting_date,
             self.ending_date,
             self.session,
-        ).to_parquet(self.output_path)
+        ).to_parquet(self.output_path,engine="pyarrow")
 
 
 class Earnings_Estimate(Extract):
@@ -99,7 +99,7 @@ class Earnings_Estimate(Extract):
         # concatenate all dataframes and write to the delta_lake file
         all_data = pd.concat(self.results)
         # write_deltalake(self.output_path, all_data, mode='overwrite')
-        all_data.to_parquet(self.output_path)
+        all_data.to_parquet(self.output_path,engine="pyarrow")
 
 
 class Earnings_Dates(Extract):
@@ -131,7 +131,7 @@ class Earnings_Dates(Extract):
         # concatenate all dataframes and write to the delta_lake file
         all_data = pd.concat(self.results)
         # write_deltalake(self.output_path, all_data, mode='overwrite')
-        all_data.to_parquet(self.output_path)
+        all_data.to_parquet(self.output_path,engine="pyarrow")
 
 
 class Earnings_History(Extract):
@@ -165,7 +165,7 @@ class Earnings_History(Extract):
         # concatenate all dataframes and write to the delta_lake file
         all_data = pd.concat(self.results)
         # write_deltalake(self.output_path, all_data, mode='overwrite')
-        all_data.to_parquet(self.output_path)
+        all_data.to_parquet(self.output_path,engine="pyarrow")
 
 
 class Info(Extract):
