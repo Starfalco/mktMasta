@@ -2,50 +2,47 @@
 
   <div formGroupName="sort">
 
-<app-dropdown
-  formControlName="field">
-</app-dropdown>
+    <app-dropdown formControlName="field">
+    </app-dropdown>
 
 
-<br>
+    <br>
 
 
-<mat-form-field appearance="outline">
+    <mat-form-field appearance="outline">
 
-  <mat-label>
-    Direction
-  </mat-label>
-
-
-  <mat-select formControlName="ascending">
+      <mat-label>
+        Direction
+      </mat-label>
 
 
-    <mat-option [value]="true">
-      Ascending
-    </mat-option>
+      <mat-select formControlName="ascending">
 
 
-    <mat-option [value]="false">
-      Descending
-    </mat-option>
+        <mat-option [value]="true">
+          Ascending
+        </mat-option>
 
 
-  </mat-select>
+        <mat-option [value]="false">
+          Descending
+        </mat-option>
 
 
-</mat-form-field>
+      </mat-select>
 
 
-<br>
+    </mat-form-field>
 
 
-<button
-  type="button"
-  (click)="updateSort()">
+    <br>
 
-  Apply Sort
 
-</button>
+    <button type="button" (click)="updateSort()">
+
+      Apply Sort
+
+    </button>
 
 
   </div>

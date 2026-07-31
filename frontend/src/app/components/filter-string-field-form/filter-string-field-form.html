@@ -2,32 +2,32 @@
 
   <div formGroupName="filter">
     <app-dropdown formControlName="field"></app-dropdown>
- 
+
 
     <br>
 
-<mat-form-field>
-  <mat-label>Contains</mat-label>
+    <mat-form-field>
+      <mat-label>Contains</mat-label>
 
-  <mat-select formControlName="contains">
-    <mat-option
-      *ngFor="let option of containsOptions"
-      [value]="option">
+      <mat-select formControlName="contains">
+        <mat-option *ngFor="let option of containsOptions" [value]="option">
 
-      {{ option }}
+          {{ option }}
 
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-    
-  </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <p>
+
+
+    <br>
+
     <button type="button" (click)="updateProfile()">
-      Apply
-      
+      Apply Filter
+
     </button>
-  </p>
+
+  </div>
 
 </form>
 <!-- NExt steps : liste deroulante pour collumn name, and min max range based of value type num or text  -->
