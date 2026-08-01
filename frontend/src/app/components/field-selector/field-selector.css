@@ -1,0 +1,11 @@
+.field-list {
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+mat-checkbox {
+  margin: 0;
+}
