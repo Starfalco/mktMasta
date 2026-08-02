@@ -7,8 +7,9 @@
       (change)="toggle(column.key)">
       {{ column.label }}
     </mat-checkbox>
+    
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button (click)="close()">Done</button>
+  <button type="button" (click)="close()">Done</button>
 </mat-dialog-actions>

@@ -1,19 +1,32 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ChangeDetectorRef,
+  inject
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
-import { MatTableDataSource } from '@angular/material/table';
-import { RetrieveCachesService } from '../../services/retrieve-cache.service';
+import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FilterOverlay } from '../overlay/overlay-components';
-import { ResetFilters } from "../reset-filters/reset-filters";
-import { PortalModule } from '@angular/cdk/portal';
-import { SortOverlay } from "../sort-overlay/sort-overlay";
-import { screenerColumns, type ScreenerColumn } from '../../model/screener.model';
-import { RetrieveCacheModel } from '../../model/retrieve-cache.model';
-import { FieldVisibilityService } from '../../services/field-visibility.service';
 import { MatDialog } from '@angular/material/dialog';
+import { PortalModule } from '@angular/cdk/portal';
+
+import { RetrieveCachesService } from '../../services/retrieve-cache.service';
+import { FieldVisibilityService } from '../../services/field-visibility.service';
+
+import { FilterOverlay } from '../overlay/overlay-components';
+import { ResetFilters } from '../reset-filters/reset-filters';
+import { SortOverlay } from '../sort-overlay/sort-overlay';
 import { FieldSelectorComponent } from '../field-selector/field-selector';
+
+import {
+  screenerColumns,
+  ScreenerColumn
+} from '../../model/screener.model';
+
+import { RetrieveCacheModel } from '../../model/retrieve-cache.model';
 
 @Component({
   selector: 'app-screener',
@@ -27,62 +40,94 @@ import { FieldSelectorComponent } from '../field-selector/field-selector';
     ResetFilters,
     PortalModule,
     SortOverlay
-],
+  ],
   templateUrl: './screener.html',
-  styleUrl: './screener.css',
+  styleUrl: './screener.css'
 })
-export class Screener implements OnInit {
-  private fieldVisibilityService = inject(FieldVisibilityService);
-  private dialog = inject(MatDialog);
-  private service = inject(RetrieveCachesService);
+export class Screener implements OnInit, AfterViewInit {
 
-  displayedColumns: ScreenerColumn[] = [];
+  private service = inject(RetrieveCachesService);
+  private dialog = inject(MatDialog);
+  private fieldVisibilityService = inject(FieldVisibilityService);
+  private cdr = inject(ChangeDetectorRef);
+
+  @ViewChild(MatTable)
+  table?: MatTable<RetrieveCacheModel>;
+
   dataSource = new MatTableDataSource<RetrieveCacheModel>();
 
-  ngOnInit() {
+  displayedColumns: ScreenerColumn[] = [];
+
+  private availableColumns: ScreenerColumn[] = [];
+
+  ngOnInit(): void {
+
     this.service.getRetrieveCache().subscribe({
       next: data => {
-        this.updateDisplayedColumns(data);
+
         this.dataSource.data = data;
+
+        const availableKeys = new Set<string>();
+
+        data.forEach(item => {
+          Object.keys(item).forEach(key => availableKeys.add(key));
+        });
+
+        this.availableColumns = screenerColumns.filter(column =>
+          availableKeys.has(column.key)
+        );
+
+        this.updateDisplayedColumns(
+          this.fieldVisibilityService.getVisibleFields()
+        );
       },
-      error: err => {
-        console.error('ERROR:', err);
-      }
+      error: err => console.error(err)
     });
 
-    // Subscribe to visibility changes
+  }
+
+  ngAfterViewInit(): void {
+
     this.fieldVisibilityService.visibleFields$.subscribe(fields => {
-      this.updateDisplayedColumnsBasedOnVisibility(fields);
+
+      console.log('Visible fields:', fields);
+
+      this.updateDisplayedColumns(fields);
+
+      this.cdr.detectChanges();
+
     });
+
   }
 
-  private updateDisplayedColumns(data: RetrieveCacheModel[]): void {
-    const availableKeys = new Set<string>();
-    data.forEach(item => {
-      Object.keys(item).forEach(key => availableKeys.add(key));
-    });
+  private updateDisplayedColumns(visibleFields: string[]): void {
 
-    // Filter by availability first
-    const availableColumns = screenerColumns.filter(column =>
-      availableKeys.has(column.key as string)
+    this.displayedColumns = this.availableColumns.filter(column =>
+      visibleFields.includes(column.key)
     );
 
-    // Then filter by visibility
-    this.updateDisplayedColumnsBasedOnVisibility(this.fieldVisibilityService.getVisibleFields(), availableColumns);
-  }
+    console.log('Displayed columns:', this.displayedColumns);
 
-  private updateDisplayedColumnsBasedOnVisibility(visibleKeys: string[], availableColumns?: ScreenerColumn[]) {
-    const columnsToUse = availableColumns || screenerColumns;
-    this.displayedColumns = columnsToUse.filter(column =>
-      visibleKeys.includes(column.key)
-    );
+    this.table?.renderRows();
   }
+  // formatValue(value: unknown): string {
+  // if (typeof value === 'number') {
+  //   return value.toFixed(2);
+  // }
 
-  openFieldSelector() {
+  // return value?.toString() ?? '';
+// formatValue(value: unknown): unknown {
+//   return value;
+// }
+  isNumber(value: unknown): boolean {
+  return typeof value === 'number';
+}
+  openFieldSelector(): void {
     this.dialog.open(FieldSelectorComponent);
   }
 
   get displayedColumnKeys(): Array<keyof RetrieveCacheModel> {
     return this.displayedColumns.map(column => column.key);
   }
+
 }

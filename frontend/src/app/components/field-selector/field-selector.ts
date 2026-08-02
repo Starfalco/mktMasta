@@ -29,5 +29,6 @@ export class FieldSelectorComponent {
 
   close() {
     this.dialogRef.close();
+    
   }
 }
