@@ -1,0 +1,50 @@
+<form id="Form" [formGroup]="profileForm">
+
+  <div formGroupName="sort">
+
+    <app-dropdown formControlName="field">
+    </app-dropdown>
+
+
+    <br>
+
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>
+        Direction
+      </mat-label>
+
+
+      <mat-select formControlName="ascending">
+
+
+        <mat-option [value]="true">
+          Ascending
+        </mat-option>
+
+
+        <mat-option [value]="false">
+          Descending
+        </mat-option>
+
+
+      </mat-select>
+
+
+    </mat-form-field>
+
+
+    <br>
+
+
+    <button type="button" (click)="updateSort()">
+
+      Apply Sort
+
+    </button>
+
+
+  </div>
+
+</form>

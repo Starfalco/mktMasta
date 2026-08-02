@@ -1,0 +1,120 @@
+:host {
+  display: block;
+  padding: 24px 24px 96px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.screener-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+}
+
+.screener-table-scroll {
+  height: calc(100vh - 220px);
+  overflow: auto;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Buttons */
+.column-selector-btn,
+.screener-action-btn {
+  margin-left: 8px;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  background: linear-gradient(90deg, #023906);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.column-selector-btn:hover,
+.screener-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(21, 101, 192, 0.24);
+}
+
+
+/* Table */
+table[mat-table],
+.mat-table,
+.mat-mdc-table {
+  width: max-content;
+  min-width: 100%;
+  background: #ffffff;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+
+/* Sticky header */
+.mat-mdc-header-row,
+.mat-header-row {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(
+    90deg,
+    rgba(27, 94, 32, 0.06) 0%,
+    rgba(21, 101, 192, 0.06) 100%
+  ) !important;
+}
+
+
+/* Header cells */
+.mat-mdc-header-cell,
+.mat-header-cell {
+  padding: 14px 16px;
+  color: #013d01;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  /* prevents transparency when sticky */
+  background:#1b5e20;
+}
+
+
+/* Data cells */
+.mat-mdc-cell,
+.mat-cell {
+  padding: 14px 16px;
+  color: #263238;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+
+/* Row hover */
+.mat-mdc-row:hover,
+.mat-row:hover {
+  background: rgba(21, 101, 192, 0.03);
+}
+
+
+/* Remove last row border */
+.mat-mdc-row:last-child .mat-mdc-cell,
+.mat-row:last-child .mat-cell {
+  border-bottom: none;
+}
+
+
+/* Keep table columns wide enough */
+.mat-column {
+  white-space: nowrap;
+}

@@ -39,6 +39,6 @@ class filter_string_field:
         if by_values != False:
             df = df[df[field].isin(values)]
 
-        df.to_parquet(self.output_path)
+        df.to_parquet(self.output_path,engine="pyarrow")
 
         return df

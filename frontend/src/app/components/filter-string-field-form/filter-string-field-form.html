@@ -1,0 +1,33 @@
+<form id="Form" [formGroup]="profileForm">
+
+  <div formGroupName="filter">
+    <app-dropdown formControlName="field"></app-dropdown>
+
+
+    <br>
+
+    <mat-form-field>
+      <mat-label>Contains</mat-label>
+
+      <mat-select formControlName="contains">
+        <mat-option *ngFor="let option of containsOptions" [value]="option">
+
+          {{ option }}
+
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
+    <br>
+
+    <button type="button" (click)="updateProfile()">
+      Apply Filter
+
+    </button>
+
+  </div>
+
+</form>
+<!-- NExt steps : liste deroulante pour collumn name, and min max range based of value type num or text  -->

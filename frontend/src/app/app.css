@@ -1,0 +1,13 @@
+@import '@angular/cdk/overlay-prebuilt.css';
+
+:host {
+  display: block;
+}
+
+.app-shell {
+  display: block;
+}
+
+.app-content {
+  padding-top: 85px;
+}
