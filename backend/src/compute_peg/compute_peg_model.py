@@ -5,6 +5,8 @@ from pydantic import BaseModel
 class peg_model(BaseModel):
     sector: Optional[str] = "NA"
     industry: Optional[str] = "NA"
+    naics_title: Optional[str] = "NA"
+    naics_code: Optional[str] = "NA"
     ticker: Optional[str] = "NA"
     earnings_f0: Optional[float] = "NA"
     earnings_f1: Optional[float] = "NA"
