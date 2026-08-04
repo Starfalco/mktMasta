@@ -97,7 +97,9 @@ services:
     command: ["fastapi", "run", "backend/src/main.py"]
 
   ui:
-    build: .
+    build:
+      context: .
+      dockerfile: angular.dockerfile
     working_dir: /frontend
     image: ${ANGULAR_IMAGE_NAME:-mktmasta_angular:latest}
     ports:
