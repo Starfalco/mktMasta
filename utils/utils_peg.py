@@ -1,4 +1,5 @@
 from utils_info import retrieve_info
+from utils_naics import retrieve_naics
 from utils_retrieve_earnings_estimate import retrieve_earnings_estimate
 from utils_retrieve_earnings_history import retrieve_earnings_history
 from utils_retrieve_price import retrieve_price
@@ -15,6 +16,10 @@ def build_peg(my_ticker: str) -> pd.DataFrame:
     info = retrieve_info(my_ticker)
     sector = info["sector"]
     industry = info["industry"]
+
+    naics = retrieve_naics(my_ticker)
+    naics_code = naics["NAICS_Level_2_Code"].values[0]
+    naics_title = naics["NAICS_Level_2_Subsector_Title"].values[0]
 
     earnings_estimate = retrieve_earnings_estimate(my_ticker)
     earnings_f0 = earnings_estimate[
@@ -93,6 +98,8 @@ def build_peg(my_ticker: str) -> pd.DataFrame:
     data = {
         "sector": sector,
         "industry": industry,
+        "naics_title": naics_title,
+        "naics_code": naics_code,
         "ticker": my_ticker,
         "earnings_f0": earnings_f0,
         "earnings_f1": earnings_f1,

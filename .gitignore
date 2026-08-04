@@ -6,6 +6,7 @@ __pycache__
 *.pyo
 *.pyd
 *.so
+*.ipynb
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/

@@ -38,6 +38,15 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
     df["earnings_f2_sector_bench"] = (
         df["earnings_f2"].groupby(df["sector"]).transform("mean")
     )
+    df["earnings_f0_naics_bench"] = (
+        df["earnings_f0"].groupby(df["naics_title"]).transform("mean")
+    )
+    df["earnings_f1_naics_bench"] = (
+        df["earnings_f1"].groupby(df["naics_title"]).transform("mean")
+    )
+    df["earnings_f2_naics_bench"] = (
+        df["earnings_f2"].groupby(df["naics_title"]).transform("mean")
+    )
 
     df["earnings_f0_delta_industry"] = (
         df["earnings_f0"] - df["earnings_f0_industry_bench"]
@@ -51,6 +60,9 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
     df["earnings_f0_delta_sector"] = df["earnings_f0"] - df["earnings_f0_sector_bench"]
     df["earnings_f1_delta_sector"] = df["earnings_f1"] - df["earnings_f1_sector_bench"]
     df["earnings_f2_delta_sector"] = df["earnings_f2"] - df["earnings_f2_sector_bench"]
+    df["earnings_f0_delta_naics"] = df["earnings_f0"] - df["earnings_f0_naics_bench"]
+    df["earnings_f1_delta_naics"] = df["earnings_f1"] - df["earnings_f1_naics_bench"]
+    df["earnings_f2_delta_naics"] = df["earnings_f2"] - df["earnings_f2_naics_bench"]
 
     # df['growth_f0_industry_bench'] = df['growth_f0'].groupby(df['industry']).transform('mean')
     df["growth_f1_industry_bench"] = (
@@ -66,6 +78,13 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
     df["growth_f2_sector_bench"] = (
         df["growth_f2"].groupby(df["sector"]).transform("mean")
     )
+    # df['growth_f0_naics_bench'] = df['growth_f0'].groupby(df['naics_title']).transform('mean')
+    df["growth_f1_naics_bench"] = (
+        df["growth_f1"].groupby(df["naics_title"]).transform("mean")
+    )
+    df["growth_f2_naics_bench"] = (
+        df["growth_f2"].groupby(df["naics_title"]).transform("mean")
+    )
 
     # df['growth_f0_delta_industry'] = df['growth_f0'] - df['growth_f0_industry_bench']
     df["growth_f1_delta_industry"] = df["growth_f1"] - df["growth_f1_industry_bench"]
@@ -73,6 +92,9 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
     # df['growth_f0_delta_sector'] = df['growth_f0'] - df['growth_f0_sector_bench']
     df["growth_f1_delta_sector"] = df["growth_f1"] - df["growth_f1_sector_bench"]
     df["growth_f2_delta_sector"] = df["growth_f2"] - df["growth_f2_sector_bench"]
+    # df['growth_f0_delta_naics'] = df['growth_f0'] - df['growth_f0_naics_bench']
+    df["growth_f1_delta_naics"] = df["growth_f1"] - df["growth_f1_naics_bench"]
+    df["growth_f2_delta_naics"] = df["growth_f2"] - df["growth_f2_naics_bench"]
 
     df["pe_f0_industry_bench"] = df["pe_f0"].groupby(df["industry"]).transform("mean")
     df["pe_f1_industry_bench"] = df["pe_f1"].groupby(df["industry"]).transform("mean")
@@ -80,6 +102,9 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
     df["pe_f0_sector_bench"] = df["pe_f0"].groupby(df["sector"]).transform("mean")
     df["pe_f1_sector_bench"] = df["pe_f1"].groupby(df["sector"]).transform("mean")
     df["pe_f2_sector_bench"] = df["pe_f2"].groupby(df["sector"]).transform("mean")
+    df["pe_f0_naics_bench"] = df["pe_f0"].groupby(df["naics_title"]).transform("mean")
+    df["pe_f1_naics_bench"] = df["pe_f1"].groupby(df["naics_title"]).transform("mean")
+    df["pe_f2_naics_bench"] = df["pe_f2"].groupby(df["naics_title"]).transform("mean")
 
     df["pe_f0_delta_industry"] = df["pe_f0"] - df["pe_f0_industry_bench"]
     df["pe_f1_delta_industry"] = df["pe_f1"] - df["pe_f1_industry_bench"]
@@ -87,6 +112,9 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
     df["pe_f0_delta_sector"] = df["pe_f0"] - df["pe_f0_sector_bench"]
     df["pe_f1_delta_sector"] = df["pe_f1"] - df["pe_f1_sector_bench"]
     df["pe_f2_delta_sector"] = df["pe_f2"] - df["pe_f2_sector_bench"]
+    df["pe_f0_delta_naics"] = df["pe_f0"] - df["pe_f0_naics_bench"]
+    df["pe_f1_delta_naics"] = df["pe_f1"] - df["pe_f1_naics_bench"]
+    df["pe_f2_delta_naics"] = df["pe_f2"] - df["pe_f2_naics_bench"]
 
     df["pe_f1_vs_f0"] = df["pe_f1"] - df["pe_f0"]
     df["pe_f2_vs_f1"] = df["pe_f2"] - df["pe_f1"]
@@ -96,6 +124,7 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
         + df["earnings_f0_delta_sector"]
         + df["pe_f0_delta_industry"]
         + df["pe_f0_delta_sector"]
+        + df["pe_f0_delta_naics"]
     )
 
     df["scoring_f1"] = (
@@ -103,16 +132,18 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
         + df["earnings_f1_delta_sector"]
         + df["pe_f1_delta_industry"]
         + df["pe_f1_delta_sector"]
+        + df["pe_f1_delta_naics"]
     )
-    +df["growth_f1_delta_industry"] + df["growth_f1_delta_sector"] + df["pe_f1_vs_f0"]
+    +df["growth_f1_delta_industry"] + df["growth_f1_delta_sector"] + df["growth_f1_delta_naics"] + df["pe_f1_vs_f0"]
 
     df["scoring_f2"] = (
         df["earnings_f2_delta_industry"]
         + df["earnings_f2_delta_sector"]
         + df["pe_f2_delta_industry"]
         + df["pe_f2_delta_sector"]
+        + df["pe_f2_delta_naics"]
     )
-    +df["growth_f2_delta_industry"] + df["growth_f2_delta_sector"] + df["pe_f2_vs_f1"]
+    +df["growth_f2_delta_industry"] + df["growth_f2_delta_sector"] + df["growth_f2_delta_naics"] + df["pe_f2_vs_f1"]
 
     # surprise average
     df["surprise_average_industry_bench"] = (
@@ -120,6 +151,9 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
     )
     df["surprise_average_sector_bench"] = (
         df["surprise_average"].groupby(df["sector"]).transform("mean")
+    )
+    df["surprise_average_naics_bench"] = (
+        df["surprise_average"].groupby(df["naics_title"]).transform("mean")
     )
 
     if my_ticker != None:
