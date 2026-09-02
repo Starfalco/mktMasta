@@ -6,7 +6,13 @@
                 "http://localhost",
                 "http://localhost:8080",
                 "http://localhost:4200",
-                "http://localhost:8000"
+                "http://localhost:8000",
+                "http://***REMOVED***:8080",
+                "http://***REMOVED***:4200",
+                "http://***REMOVED***:8000",
+                "http://***REMOVED***:8080",
+                "http://***REMOVED***:4200",
+                "http://***REMOVED***:8000"
         ],
         "allow_methods" :
         [
