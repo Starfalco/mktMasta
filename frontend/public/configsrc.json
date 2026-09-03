@@ -1,8 +1,0 @@
-{
-  "backendApi": {
-    "baseUrl": "http://localhost:8000",
-    "httpHeader": "Content-Type: application/json",
-    "endpointInitCache": "cache/init_cache",
-    "endpointRetrieveCache": "cache/retrieve_cache"
-  }
-}

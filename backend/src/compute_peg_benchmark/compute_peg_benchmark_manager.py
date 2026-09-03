@@ -1,15 +1,10 @@
-import json
-
-config_path = "/code/backend/src/config.json"
-
-with open(config_path) as stream:
-    config = json.load(stream)
-
 import pandas as pd
 import sys
 
+from .. import settings
+
 # setting path
-sys.path.append(config["path_utils"])
+sys.path.append(settings.path_utils)
 
 from utils_peg_benchmark import build_peg_benchmark as peg_benchmark
 

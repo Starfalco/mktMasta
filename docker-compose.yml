@@ -88,6 +88,8 @@ services:
     image: ${FASTAPI_IMAGE_NAME:-mktmasta_fastapi:latest}
     ports:
      - "8000:8000"
+    env_file:
+      - .env
     volumes:
      - ./backend/src:/code/backend/src
      - ./utils:/code/utils
@@ -104,7 +106,7 @@ services:
     image: ${ANGULAR_IMAGE_NAME:-mktmasta_angular:latest}
     ports:
      - "4200:4200"
-    command: ["ng", "serve", "--host", "0.0.0.0"]
+    command: ["ng", "serve", "--host", "0.0.0.0", "--proxy-config", "proxy.conf.json"]
 
 volumes:
   postgres-db-volume:

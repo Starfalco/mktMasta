@@ -10,9 +10,6 @@ import { ConfigService } from '../../services/config-file-service';
 export class BackendApiService {
   private config = inject(ConfigService);
   private http = inject(HttpClient);
-  // private baseUrl = 'http://localhost:8000';
-  private baseUrl = this.config.getBaseUrl();
-  
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -21,18 +18,18 @@ export class BackendApiService {
   }
 
   get<T>(endpoint: string, params?: HttpParams): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}/${endpoint}`, {
+    return this.http.get<T>(this.config.getApiUrl(endpoint), {
       headers: this.getHeaders(),
       params,
     });
   }
 
- 
+
   // get<T>(endpoint: string): Observable<T> {
-  //   return this.http.get<T>(`${this.baseUrl}/${endpoint}`);
-  // } 
+  //   return this.http.get<T>(this.config.getApiUrl(endpoint));
+  // }
   post<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
-    return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, {
+    return this.http.post<T>(this.config.getApiUrl(endpoint), body, {
       headers: this.getHeaders(),
       params,
       withCredentials: true
@@ -40,13 +37,13 @@ export class BackendApiService {
   }
 
   put<T>(endpoint: string, body: any): Observable<T> {
-    return this.http.put<T>(`${this.baseUrl}/${endpoint}`, body, {
+    return this.http.put<T>(this.config.getApiUrl(endpoint), body, {
       headers: this.getHeaders(),
     });
   }
 
   delete<T>(endpoint: string): Observable<T> {
-    return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, {
+    return this.http.delete<T>(this.config.getApiUrl(endpoint), {
       headers: this.getHeaders(),
     });
   }

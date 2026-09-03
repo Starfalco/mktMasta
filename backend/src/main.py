@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
+from . import settings
 from .retrieve_earnings_estimate import retrieve_earnings_estimate_controller
 from .retrieve_earnings_history import retrieve_earnings_history_controller
 from .retrieve_price import retrieve_price_controller
@@ -19,24 +21,27 @@ from .filter_field_unique_values import filter_field_unique_values_controller
 from .filter_string_field import filter_string_field_controller
 from .hide_default_field import hide_default_field_controller
 from .hide_visible_field import hide_visible_field_controller
-import json
-
-config_path = "backend/src/config.json"
-
-with open(config_path) as stream:
-    config = json.load(stream)
 
 app = FastAPI()
 
-origins = config["fastapi_origins"]
-
+# CORS from centralized settings
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=settings.fastapi_origins,
     allow_credentials=True,
-    allow_methods=config["allow_methods"],
+    allow_methods=settings.allow_methods,
     allow_headers=["*"],
 )
+
+
+@app.get("/config.json", tags=["frontend"])
+async def get_frontend_config():
+    """Serves the frontend configuration at runtime.
+
+    When frontend_base_url is empty, baseUrl is set to '' so the
+    frontend uses relative paths (ideal for reverse-proxy deployments).
+    """
+    return JSONResponse(content=settings.get_frontend_config())
 
 app.include_router(init_cache_controller.router)
 app.include_router(retrieve_cache_controller.router)

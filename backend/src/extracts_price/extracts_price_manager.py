@@ -1,17 +1,13 @@
 import json
 from curl_cffi import requests
 from datetime import date
-
-config_path = "/code/backend/src/config.json"
-
-with open(config_path) as stream:
-    config = json.load(stream)
-
 import pandas as pd
 import sys
 
+from .. import settings
+
 # setting path
-sys.path.append(config["path_utils"])
+sys.path.append(settings.path_utils)
 
 from utils_yfinance import download_price
 

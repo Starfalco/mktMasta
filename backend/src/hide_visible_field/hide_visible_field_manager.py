@@ -1,16 +1,13 @@
-import os, json
+import os
 import pandas as pd
 
-config_path = "/code/backend/src/config.json"
-
-with open(config_path) as stream:
-    config = json.load(stream)
+from .. import settings
 
 
 class hide_visible_field:
 
     def __init__(self):
-        self.output_path = config["path_screener_cache"]
+        self.output_path = settings.path_screener_cache
 
     def get_hide_visible_field(
         self,
