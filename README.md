@@ -59,8 +59,8 @@ Nginx:
 ### Production (Direct Deployment)
 ```bash
 # .env on the server
-FRONTEND_BASE_URL=http://***REMOVED***:8000
-FASTAPI_ORIGINS=http://***REMOVED***:4200,http://***REMOVED***:8080,http://***REMOVED***:8000
+FRONTEND_BASE_URL=http://your-server-ip:8000
+FASTAPI_ORIGINS=http://your-server-ip:4200,http://your-server-ip:8080,http://your-server-ip:8000
 ```
 
 The frontend will fetch `/config.json` from the backend and use the `baseUrl` to construct API URLs.

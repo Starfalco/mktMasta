@@ -14,19 +14,12 @@ class Settings(BaseSettings):
     """Centralized configuration using environment variables with defaults."""
 
     # CORS settings — accept comma-separated string from env, stored as list
+    # Override via FASTAPI_ORIGINS env var for production
     fastapi_origins_raw: str = (
-        "http://localhost.***REMOVED***,"
-        "https://localhost.***REMOVED***,"
         "http://localhost,"
         "http://localhost:8080,"
         "http://localhost:4200,"
-        "http://localhost:8000,"
-        "http://***REMOVED***:8080,"
-        "http://***REMOVED***:4200,"
-        "http://***REMOVED***:8000,"
-        "http://***REMOVED***:8080,"
-        "http://***REMOVED***:4200,"
-        "http://***REMOVED***:8000"
+        "http://localhost:8000"
     )
     allow_methods_raw: str = "GET,POST,PUT,DELETE"
 
