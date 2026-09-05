@@ -20,7 +20,7 @@ docker compose up --build -d
 |---------|-----|-------------|
 | Frontend (Angular) | http://localhost:4200 | Dev server with hot reload + API proxy |
 | Backend (FastAPI) | http://localhost:8000 | REST API + OpenAPI docs at /docs |
-| Airflow UI | http://localhost:8080 | Pipeline orchestration |
+| Airflow UI | http://localhost:1080 | Pipeline orchestration |
 | PgAdmin | http://localhost:8888 | Database admin |
 
 The Angular dev server proxies all `/api/*` and `/cache/*` requests to the FastAPI backend automatically via `proxy.conf.json`.
@@ -38,22 +38,6 @@ This project uses **runtime config discovery** — the frontend fetches its conf
 # .env (or just use defaults)
 FRONTEND_BASE_URL=          # Empty = relative paths (works with dev proxy)
 FASTAPI_ORIGINS=http://localhost:4200,http://localhost:8000
-```
-
-### Production (Reverse Proxy — Recommended)
-```bash
-# .env on the server
-FRONTEND_BASE_URL=          # Empty — frontend uses relative paths
-FASTAPI_ORIGINS=http://your-domain.com,http://your-domain.com:8080
-```
-
-With a reverse proxy (Nginx/Apache) routing all requests to the same domain:
-```
-Nginx:
-  /          → Angular static files
-  /api/*     → Backend (port 8000)
-  /cache/*   → Backend (port 8000)
-  /config.json → Backend (port 8000)
 ```
 
 ### Production (Direct Deployment)
@@ -74,15 +58,6 @@ The frontend will fetch `/config.json` from the backend and use the `baseUrl` to
 │  Angular (ng serve + proxy)  ←→  FastAPI (port 8000)│
 │  Port 4200                    Port 8000             │
 │  Proxies /api, /cache       CORS configured         │
-└─────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────┐
-│  Production (Reverse Proxy)                         │
-│                                                     │
-│  Nginx (port 80/443)                                │
-│    /          → Angular SPA                         │
-│    /api/*     → FastAPI                             │
-│    /config.json → FastAPI (serves frontend config)  │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -122,30 +97,3 @@ The frontend will fetch `/config.json` from the backend and use the `baseUrl` to
 ### 7th phase — Long term 🔮
 - Store output and raw data for statistics (regression models)
 - Train AI model or RAG based on outputs for stock picking decisions
-
-## 1st phase
-scrap stock market data via yfinance framework
-
-compute peg ratios and other metadata
-## 2nd phase
-scraping macro economics data from FRED
-
-scraping data from ism (institute for supply management) reports (manufacturing and services)
-## 3rd phase
-scraping options/derivatives data
-
-compute pricer estimate based on Black-Scholes model (to help selecting stock target price and stop loss)
-## 4th phase - can start after 1st phase done
-generate an output for stock picking decisions (earnings calendar terms)
-
-output front-end via a dataviz (power bi like or else, to be determinated)
-
-genereate a short list selection based on those quantitatives (top 20 or other guideline)
-## 5th phase
-scheduling the entire pipeline on monthly or weekly basis (airflow or else)
-## 6th phase
-integrate a AI token output to sum up kpi's and additional main points from earnings call transcripts (as an input) with ollama apiRest
-## 7th phase - in long term
-in long term, storaging output and raw data for statistics purposes (regression model tests or else)
-
-in long term ++, train a AI model or RAG (LLM or else if they are more convinient models) based on those output to generate stock picking decisions (in comparison with analysts choices)
