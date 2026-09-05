@@ -2,6 +2,7 @@ import sys, os, json
 
 sys.path.append("/opt/airflow/dags/modules/")
 from metadata import *
+from rate_limiter import default_rate_limiter
 
 # To get the directory of the script/file:
 current_dir = os.path.dirname(os.path.realpath(__file__))
