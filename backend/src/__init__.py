@@ -55,6 +55,7 @@ class Settings(BaseSettings):
                     "httpHeader": "Content-Type: application/json",
                     "endpointInitCache": "cache/init_cache",
                     "endpointRetrieveCache": "cache/retrieve_cache",
+                    "endpointFilterFieldUniqueValues": "filter/filter_field_unique_values"
                 }
             }
         return {
@@ -63,6 +64,7 @@ class Settings(BaseSettings):
                 "httpHeader": "Content-Type: application/json",
                 "endpointInitCache": "cache/init_cache",
                 "endpointRetrieveCache": "cache/retrieve_cache",
+                "endpointFilterFieldUniqueValues": "filter/filter_field_unique_values"
             }
         }
 
