@@ -12,8 +12,8 @@ export class ResetFilters {
 
   async openModal() {
     this.initCacheService.initCache().subscribe();
-    // await sleep(1000); // Wait for 1 second before reloading the page
-    // window.location.reload();
+    await sleep(1000); // Wait for 1 second before reloading the page
+    window.location.reload();
   }
 }
 
