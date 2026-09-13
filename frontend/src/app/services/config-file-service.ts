@@ -6,6 +6,8 @@ export interface BackendApiConfig {
   httpHeader: string;
   endpointInitCache: string;
   endpointRetrieveCache: string;
+  endpointFilterFieldUniqueValues: string;
+  endpointFilterStringField: string;
 }
 
 export interface AppConfig {
@@ -51,6 +53,8 @@ export class ConfigService {
                 httpHeader: 'Content-Type: application/json',
                 endpointInitCache: 'cache/init_cache',
                 endpointRetrieveCache: 'cache/retrieve_cache',
+                endpointFilterFieldUniqueValues: 'filter/filter_field_unique_values',
+                endpointFilterStringField: 'filter/filter_string_field'
               }
             };
             this.configLoaded = true;
