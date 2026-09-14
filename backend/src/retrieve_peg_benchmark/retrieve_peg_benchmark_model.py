@@ -66,3 +66,4 @@ class peg_benchmark_model(BaseModel):
     scoring_f2: Optional[float] = "NA"
     surprise_average_industry_bench: Optional[float] = "NA"
     surprise_average_sector_bench: Optional[float] = "NA"
+    value_date_dmy: Optional[str] = "NA"

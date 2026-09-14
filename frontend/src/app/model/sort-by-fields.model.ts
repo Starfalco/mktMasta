@@ -80,4 +80,5 @@ export interface SortByFieldsModel {
     surprise_average_industry_bench: number;
     surprise_average_sector_bench: number;
     surprise_average_naics_bench: number;
+    value_date_dmy: string;
 }
