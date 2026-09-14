@@ -11,60 +11,6 @@
     "changeOrigin": true,
     "logLevel": "debug"
   },
-  "/filter": {
-    "target": "http://api:8000",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  "/compute": {
-    "target": "http://api:8000",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  "/earnings": {
-    "target": "http://api:8000",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  "/extracts": {
-    "target": "http://api:8000",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  "/hide": {
-    "target": "http://api:8000",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  "/peg": {
-    "target": "http://api:8000",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  "/retrieve": {
-    "target": "http://api:8000",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  "/scope": {
-    "target": "http://api:8000",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  "/sort": {
-    "target": "http://api:8000",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
   "/config.json": {
     "target": "http://api:8000",
     "secure": false,
