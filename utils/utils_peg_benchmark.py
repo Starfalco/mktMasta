@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from datetime import date
 
 
 def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
@@ -155,6 +156,9 @@ def build_peg_benchmark(my_ticker: str = None) -> pd.DataFrame:
     df["surprise_average_naics_bench"] = (
         df["surprise_average"].groupby(df["naics_title"]).transform("mean")
     )
+
+    # Add the date this benchmark was computed (dd-mm-yyyy format)
+    df["value_date_dmy"] = date.today().strftime("%d-%m-%Y")
 
     if my_ticker != None:
         df = df[df["ticker"] == my_ticker.upper()]

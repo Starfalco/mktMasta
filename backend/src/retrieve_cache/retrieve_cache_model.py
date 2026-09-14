@@ -95,3 +95,4 @@ class retrieve_cache_model(BaseModel):
     surprise_average_industry_bench: Optional[float] = None
     surprise_average_sector_bench: Optional[float] = None
     surprise_average_naics_bench: Optional[float] = None
+    value_date_dmy: Optional[str] = None

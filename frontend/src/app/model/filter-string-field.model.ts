@@ -80,6 +80,7 @@ export interface FilterStringFieldModel {
   surprise_average_industry_bench: number;
   surprise_average_sector_bench: number;
   surprise_average_naics_bench: number;
+  value_date_dmy: string;
 }
 
 export interface FilterFieldOption {
@@ -195,4 +196,5 @@ export const FILTER_STRING_FIELD_OPTIONS: readonly FilterFieldOption[] = [
   { value: 'surprise_average_industry_bench', label: 'Average Surprise Industry Benchmark' },
   { value: 'surprise_average_sector_bench', label: 'Average Surprise Sector Benchmark' },
   { value: 'surprise_average_naics_bench', label: 'Average Surprise NAICS Benchmark' },
+  { value: 'value_date_dmy', label: 'Value Date' },
 ] as const;
