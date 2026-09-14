@@ -1,4 +1,5 @@
 import sys, os, json
+from datetime import date
 
 sys.path.append("/opt/airflow/dags/modules/")
 from metadata import *
@@ -12,6 +13,23 @@ with open(config_path) as stream:
     config = json.load(stream)
 
 
+def _get_date_range():
+    """Return (starting_date, ending_date) as YYYY-MM-DD strings.
+
+    ending_date = today
+    starting_date = 6 months before ending_date
+    """
+    today = date.today()
+    # Subtract 6 months (handle year boundary correctly)
+    month = today.month - 6
+    year = today.year
+    if month <= 0:
+        month += 12
+        year -= 1
+    starting = today.replace(year=year, month=month)
+    return starting.isoformat(), today.isoformat()
+
+
 def get_input():
     file_ticker = config["path_inputs"]
     df_ticker = pd.read_csv(file_ticker, encoding="utf-8", sep=";")["Symbol"]
@@ -21,15 +39,17 @@ def get_input():
 
 
 def mdd_task():
+    starting_date, ending_date = _get_date_range()
     mdd_transform = Max_Drawn_Down(
-        get_input(), starting_date=config["start_date"], ending_date=config["end_date"]
+        get_input(), starting_date=starting_date, ending_date=ending_date
     )
     mdd_transform.transform_data()
 
 
 def volatility_task():
+    starting_date, ending_date = _get_date_range()
     volatility_transform = Volatility(
-        get_input(), starting_date=config["start_date"], ending_date=config["end_date"]
+        get_input(), starting_date=starting_date, ending_date=ending_date
     )
     volatility_transform.transform_data()
 
