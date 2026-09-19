@@ -1,0 +1,74 @@
+---
+# GitLab server configuration
+
+- name: Mount GitLab data disk
+  mount:
+    name: "{{ item.path }}"
+    src: "/dev/sdb1"
+    fstype: ext4
+    state: mounted
+  loop:
+    - { path: "/srv/gitlab/config", owner: "998", group: "998", mode: "0755" }
+    - { path: "/srv/gitlab/logs", owner: "998", group: "998", mode: "0755" }
+    - { path: "/srv/gitlab/data", owner: "998", group: "998", mode: "0755" }
+  ignore_errors: true
+
+- name: Format data disk if not formatted
+  filesystem:
+    fstype: ext4
+    dev: "/dev/sdb1"
+  ignore_errors: true
+  when: not ansible_mounts | selectattr('mount', 'equalto', '/srv/gitlab') | list | length
+
+- name: Create GitLab directories
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "998"
+    group: "998"
+    mode: "0755"
+  loop:
+    - /srv/gitlab/config
+    - /srv/gitlab/logs
+    - /srv/gitlab/data
+
+- name: Mount GitLab data disk
+  mount:
+    name: "{{ item.path }}"
+    src: "/dev/sdb1"
+    fstype: ext4
+    state: mounted
+  loop:
+    - { path: "/srv/gitlab/config" }
+    - { path: "/srv/gitlab/logs" }
+    - { path: "/srv/gitlab/data" }
+  when: not ansible_mounts | selectattr('mount', 'equalto', item.path) | list | length
+
+- name: Deploy GitLab Docker container
+  shell: |
+    docker run -d \
+      --name gitlab \
+      --restart always \
+      -p 443:443 -p 80:80 -p 22:22 \
+      -v /srv/gitlab/config:/etc/gitlab \
+      -v /srv/gitlab/logs:/var/log/gitlab \
+      -v /srv/gitlab/data:/var/opt/gitlab \
+      gitlab/gitlab-ce:latest
+  args:
+    creates: /var/run/gitlab.pid
+
+- name: Wait for GitLab to be ready
+  uri:
+    url: "http://localhost:80"
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 30
+  delay: 10
+  ignore_errors: true
+
+- name: Configure GitLab external URL
+  shell: |
+    docker exec gitlab gitlab-ctl reconfigure
+  args:
+    creates: /etc/gitlab/gitlab.rb

@@ -1,0 +1,11 @@
+# Terraform state
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Terraform variables with secrets
+terraform.tfvars
+
+# Ansible vault
+*.vault

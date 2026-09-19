@@ -1,0 +1,22 @@
+---
+# Master playbook — run after terraform apply
+# Usage: ansible-playbook ansible/site.yml
+
+- name: Apply common configuration to all servers
+  hosts: all
+  become: true
+  roles:
+    - common
+    - tailscale
+
+- name: Configure app server
+  hosts: app_server
+  become: true
+  roles:
+    - app-server
+
+- name: Configure GitLab server
+  hosts: gitlab_server
+  become: true
+  roles:
+    - gitlab-server
