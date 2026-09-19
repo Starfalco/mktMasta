@@ -1,0 +1,50 @@
+---
+# Install and configure Tailscale on all servers
+
+- name: Install Tailscale
+  shell: |
+    curl -fsSL https://tailscale.com/install.sh | sh
+  args:
+    creates: /usr/bin/tailscale
+
+- name: Ensure Tailscale state directory exists
+  file:
+    path: /etc/tailscale
+    state: directory
+    mode: "0700"
+
+- name: Mount Tailscale state disk
+  mount:
+    name: /etc/tailscale
+    src: "{{ tailscale_disk_dev | default('/dev/sdc1') }}"
+    fstype: ext4
+    state: mounted
+  ignore_errors: true
+
+- name: Format Tailscale state disk if not formatted
+  filesystem:
+    fstype: ext4
+    dev: "{{ tailscale_disk_dev | default('/dev/sdc1') }}"
+  ignore_errors: true
+  when: not ansible_mounts | selectattr('mount', 'equalto', '/etc/tailscale') | list | length
+
+- name: Mount Tailscale state disk
+  mount:
+    name: /etc/tailscale
+    src: "{{ tailscale_disk_dev | default('/dev/sdc1') }}"
+    fstype: ext4
+    state: mounted
+  when: not ansible_mounts | selectattr('mount', 'equalto', '/etc/tailscale') | list | length
+
+- name: Start Tailscale
+  command: tailscale up --auth-key="{{ tailscale_auth_key }}" --hostname="{{ inventory_hostname }}"
+  args:
+    creates: /etc/tailscale/tailscaled.pid
+  environment:
+    TAILSCALED_STATE_DIR: /etc/tailscale
+
+- name: Enable subnet router (optional)
+  command: tailscale up --advertise-routes="{{ subnet_routes }}" --auth-key="{{ tailscale_auth_key }}"
+  when: tailscale_subnet_router | default(false)
+  environment:
+    TAILSCALED_STATE_DIR: /etc/tailscale
