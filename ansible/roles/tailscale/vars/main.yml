@@ -1,4 +1,0 @@
----
-tailscale_disk_dev: "/dev/sdc1"
-tailscale_subnet_router: false
-subnet_routes: ""

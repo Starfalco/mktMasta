@@ -1,9 +1,0 @@
-# Copy this file to terraform.tfvars and fill in your values
-# DO NOT commit terraform.tfvars to git (it contains secrets)
-
-proxmox_api_url      = "https://<proxmox-ip>:8006/api2/json"
-proxmox_api_user     = "root@pam"
-proxmox_api_password = "<your-proxmox-password>"
-vm_password          = "<your-vm-ssh-password>"
-ssh_public_key       = "<your-ssh-public-key>"
-tailscale_auth_key   = "<your-tailscale-auth-key>"
