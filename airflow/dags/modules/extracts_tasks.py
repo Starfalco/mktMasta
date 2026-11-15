@@ -1,5 +1,6 @@
 import sys, os
 import json
+from datetime import date, timedelta
 
 sys.path.append("/opt/airflow/dags/modules/")
 from data_downloader import *
@@ -13,10 +14,28 @@ with open(config_path) as stream:
     config = json.load(stream)
 
 
+def _get_date_range():
+    """Return (starting_date, ending_date) as YYYY-MM-DD strings.
+
+    ending_date = today
+    starting_date = 6 months before ending_date
+    """
+    today = date.today()
+    # Subtract 6 months (handle year boundary correctly)
+    month = today.month - 6
+    year = today.year
+    if month <= 0:
+        month += 12
+        year -= 1
+    starting = today.replace(year=year, month=month)
+    return starting.isoformat(), today.isoformat()
+
+
 def prices_task():
 
+    starting_date, ending_date = _get_date_range()
     price_extract = Prices(
-        get_input(), starting_date=config["start_date"], ending_date=config["end_date"]
+        get_input(), starting_date=starting_date, ending_date=ending_date
     )
     price_extract.get_data()
 

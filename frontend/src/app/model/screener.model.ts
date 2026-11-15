@@ -86,5 +86,6 @@ export const screenerColumns: ScreenerColumn[] = [
   { key: 'scoring_f2', label: 'Scoring F2' },
   { key: 'surprise_average_industry_bench', label: 'Surprise Average Industry Bench' },
   { key: 'surprise_average_sector_bench', label: 'Surprise Average Sector Bench' },
-  { key: 'surprise_average_naics_bench', label: 'Surprise Average NAICS Bench' }
+  { key: 'surprise_average_naics_bench', label: 'Surprise Average NAICS Bench' },
+  { key: 'value_date_dmy', label: 'Value Date' }
 ];

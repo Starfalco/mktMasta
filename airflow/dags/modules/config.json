@@ -12,8 +12,6 @@
     "extract_path_local_settings": "extracts/",
     "metadata_local_settings": "metadata/",
     "path_modules": "/opt/airflow/dags/modules/",
-    "start_date": "2023-01-01",
-    "end_date": "2024-12-31",
     "prices_task_execution_in_minutes": 30,
     "mdd_task_execution_in_minutes": 15,
     "volatility_task_execution_in_minutes": 15,

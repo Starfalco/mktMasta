@@ -4,7 +4,7 @@ from .init_cache_manager import init_cache
 router = APIRouter(prefix="/cache", tags=["cache"])
 
 
-@router.get("/init_cache/")
+@router.get("/init_cache")
 async def get() -> bool:
 
     try:

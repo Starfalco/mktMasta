@@ -5,7 +5,7 @@ from json import loads
 router = APIRouter(prefix="/filter", tags=["filter"])
 
 
-@router.get("/filter_field_unique_values/")
+@router.get("/filter_field_unique_values")
 async def get(field: str) -> list[str]:
 
     response = loads(

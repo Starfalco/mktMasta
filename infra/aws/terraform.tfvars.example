@@ -1,0 +1,8 @@
+# Copy this file to terraform.tfvars and fill in your values
+# DO NOT commit terraform.tfvars to git (it contains secrets)
+
+aws_region     = "eu-west-3"
+project_name   = "mktmasta"
+db_username    = "mktmasta"
+db_password    = "<your-secure-database-password>"
+ssh_key_name   = "mktmasta-key"

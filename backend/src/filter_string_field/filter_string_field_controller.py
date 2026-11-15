@@ -6,7 +6,7 @@ from json import loads
 router = APIRouter(prefix="/filter", tags=["filter"])
 
 
-@router.post("/filter_string_field/")
+@router.post("/filter_string_field")
 async def get(
     field: str,
     contains: str = None,

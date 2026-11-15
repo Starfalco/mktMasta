@@ -1,0 +1,179 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  AWS_REGION: eu-west-3
+  ECR_REPOSITORY: mktmasta-app
+  EC2_HOST: ${{ secrets.EC2_HOST }}
+
+jobs:
+  # =============================================================================
+  # Lint FastAPI
+  # =============================================================================
+  lint:
+    name: Lint FastAPI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          cd backend/src
+          pip install flake8
+
+      - name: Run linter
+        run: |
+          cd backend/src
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+  # =============================================================================
+  # Build Angular Image
+  # =============================================================================
+  build-angular:
+    name: Build Angular Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Angular image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_IMAGE_TAG: ${{ github.sha }}-angular
+        run: |
+          docker build -f angular.dockerfile -t $ECR_REGISTRY/mktmasta-angular:$ECR_IMAGE_TAG frontend/
+          docker push $ECR_REGISTRY/mktmasta-angular:$ECR_IMAGE_TAG
+
+  # =============================================================================
+  # Build FastAPI Image
+  # =============================================================================
+  build-fastapi:
+    name: Build FastAPI Image
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push FastAPI image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_IMAGE_TAG: ${{ github.sha }}-fastapi
+        run: |
+          docker build -f fastapi.dockerfile -t $ECR_REGISTRY/mktmasta-fastapi:$ECR_IMAGE_TAG .
+          docker push $ECR_REGISTRY/mktmasta-fastapi:$ECR_IMAGE_TAG
+
+  # =============================================================================
+  # Build Airflow Image
+  # =============================================================================
+  build-airflow:
+    name: Build Airflow Image
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Airflow image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_IMAGE_TAG: ${{ github.sha }}-airflow
+        run: |
+          docker build -f airflow.dockerfile -t $ECR_REGISTRY/mktmasta-airflow:$ECR_IMAGE_TAG .
+          docker push $ECR_REGISTRY/mktmasta-airflow:$ECR_IMAGE_TAG
+
+  # =============================================================================
+  # Deploy to EC2
+  # =============================================================================
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    needs: [build-angular, build-fastapi, build-airflow]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Get EC2 public IP
+        id: ec2-ip
+        run: |
+          IP=$(aws ec2 describe-instances \
+            --filters "Name=tag:Name,Values=mktmasta-app-server" \
+            --query 'Reservations[*].Instances[*].PublicIpAddress' \
+            --output text)
+          echo "EC2_HOST=$IP" >> $GITHUB_OUTPUT
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ steps.ec2-ip.outputs.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Login to ECR
+            aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REGISTRY }}
+
+            # Pull all images
+            docker pull ${{ secrets.ECR_REGISTRY }}/mktmasta-angular:${{ github.sha }}-angular
+            docker pull ${{ secrets.ECR_REGISTRY }}/mktmasta-fastapi:${{ github.sha }}-fastapi
+            docker pull ${{ secrets.ECR_REGISTRY }}/mktmasta-airflow:${{ github.sha }}-airflow
+
+            # Update docker-compose.yml with new image tags
+            cd /opt/mktMasta
+            sed -i "s|image:.*mktmasta-angular.*|image: ${{ secrets.ECR_REGISTRY }}/mktmasta-angular:${{ github.sha }}-angular|" docker-compose.yml
+            sed -i "s|image:.*mktmasta-fastapi.*|image: ${{ secrets.ECR_REGISTRY }}/mktmasta-fastapi:${{ github.sha }}-fastapi|" docker-compose.yml
+            sed -i "s|image:.*mktmasta-airflow.*|image: ${{ secrets.ECR_REGISTRY }}/mktmasta-airflow:${{ github.sha }}-airflow|" docker-compose.yml
+
+            # Restart services
+            docker compose up -d
