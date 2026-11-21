@@ -13,10 +13,6 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
-
-  assume_role {
-    role_arn = "arn:aws:iam::042420645892:role/TerraformExecutionRole"
-  }
 }
 
 # =============================================================================
@@ -50,7 +46,7 @@ variable "ssh_key_name" {
 variable "ubuntu_ami_id" {
   description = "Ubuntu 22.04 AMI ID for eu-north-1"
   type        = string
-  default     = "ami-0028809abe98af413"
+  default     = "ami-00bfbad6bcbcbc897"
 }
 
 # =============================================================================
@@ -59,7 +55,8 @@ variable "ubuntu_ami_id" {
 
 resource "aws_security_group" "ec2" {
   name        = "${var.project_name}-ec2-sg"
-  description = "Security group for EC2 instance (default VPC)"
+  description = "Security group for EC2 instance"
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port   = 22
@@ -106,6 +103,7 @@ resource "aws_instance" "app" {
   ami                    = var.ubuntu_ami_id
   instance_type          = var.ec2_instance_type
   key_name               = var.ssh_key_name
+  subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.ec2.id]
 
   user_data = <<-EOF

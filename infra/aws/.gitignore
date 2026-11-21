@@ -5,4 +5,4 @@
 .terraform.lock.hcl
 
 # Terraform variables with secrets
-terraform.tfvars
+*.tfvars
