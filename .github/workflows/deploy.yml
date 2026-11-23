@@ -2,12 +2,12 @@ name: Deploy to AWS
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 env:
-  AWS_REGION: eu-west-3
+  AWS_REGION: us-east-1
   ECR_REPOSITORY: mktmasta-app
   EC2_HOST: ${{ secrets.EC2_HOST }}
 
@@ -162,18 +162,18 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # Login to ECR
-            aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REGISTRY }}
+            aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
 
             # Pull all images
-            docker pull ${{ secrets.ECR_REGISTRY }}/mktmasta-angular:${{ github.sha }}-angular
-            docker pull ${{ secrets.ECR_REGISTRY }}/mktmasta-fastapi:${{ github.sha }}-fastapi
-            docker pull ${{ secrets.ECR_REGISTRY }}/mktmasta-airflow:${{ github.sha }}-airflow
+            docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/mktmasta-angular:${{ github.sha }}-angular
+            docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/mktmasta-fastapi:${{ github.sha }}-fastapi
+            docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/mktmasta-airflow:${{ github.sha }}-airflow
 
             # Update docker-compose.yml with new image tags
             cd /opt/mktMasta
-            sed -i "s|image:.*mktmasta-angular.*|image: ${{ secrets.ECR_REGISTRY }}/mktmasta-angular:${{ github.sha }}-angular|" docker-compose.yml
-            sed -i "s|image:.*mktmasta-fastapi.*|image: ${{ secrets.ECR_REGISTRY }}/mktmasta-fastapi:${{ github.sha }}-fastapi|" docker-compose.yml
-            sed -i "s|image:.*mktmasta-airflow.*|image: ${{ secrets.ECR_REGISTRY }}/mktmasta-airflow:${{ github.sha }}-airflow|" docker-compose.yml
+            sed -i "s|image:.*mktmasta-angular.*|image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/mktmasta-angular:${{ github.sha }}-angular|" docker-compose.yml
+            sed -i "s|image:.*mktmasta-fastapi.*|image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/mktmasta-fastapi:${{ github.sha }}-fastapi|" docker-compose.yml
+            sed -i "s|image:.*mktmasta-airflow.*|image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/mktmasta-airflow:${{ github.sha }}-airflow|" docker-compose.yml
 
             # Restart services
             docker compose up -d
